@@ -1,0 +1,10 @@
+{
+  "extends": [
+    "plugin:react/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "airbnb-base"
+    ],
+  "parserOptions": {
+    "ecmaVersion": 2018
+  }
+}

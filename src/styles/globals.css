@@ -1,1 +1,5 @@
 @import "tailwindcss";
+
+@theme {
+  --color-umenobe-yellow:  #FFFF79;
+}

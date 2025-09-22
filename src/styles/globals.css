@@ -2,6 +2,8 @@
 
 @theme {
   --color-umenobe-yellow:  #FFFF79;
+  --color-umenobe-orange: #FCC511;
+  --color-umenobe-gray: #939393;
 }
 
 .font-dela-one {
@@ -10,4 +12,9 @@
 
 .font-zenkaku {
   font-family: var(--font-zenkaku), sans-serif;
+}
+
+.title {
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: #939393;
 }

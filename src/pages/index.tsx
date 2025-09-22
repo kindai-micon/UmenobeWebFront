@@ -1,4 +1,4 @@
-import { Header } from './components/Header';
+import { Header } from './features/header/Header';
 import KeyVisualPage from './features/kv';
 import EventInfoPage from './features/eventinfo';
 import TimeTablePage from './features/timetable';

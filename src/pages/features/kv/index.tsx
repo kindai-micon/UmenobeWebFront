@@ -12,8 +12,14 @@ export default function KeyVisualPage() {
         sizes="100%"
         style={{ width: '100%', height: 'auto' }}
       />
-      <h2>近畿大学工学部大学祭</h2>
-      <h1>第68回うめの辺祭</h1>
+      <div className="p-5">
+        <div className="border border-umenobe-gray bg-umenobe-orange py-2 px-4 inline-block">
+          <h2 className="font-dela-one text-5xl tracking-widest text-white title">近畿大学工学部大学祭</h2>
+        </div>
+        <div>
+          <h1 className="m-1 font-dela-one text-8xl tracking-widest title text-umenobe-orange">第68回 うめの辺祭</h1>
+        </div>
+      </div>
     </section>
   );
 }

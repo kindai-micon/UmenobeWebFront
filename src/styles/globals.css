@@ -3,3 +3,11 @@
 @theme {
   --color-umenobe-yellow:  #FFFF79;
 }
+
+.font-dela-one {
+  font-family: var(--font-dela-one), sans-serif;
+}
+
+.font-zenkaku {
+  font-family: var(--font-zenkaku), sans-serif;
+}

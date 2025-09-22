@@ -1,7 +1,9 @@
+import { Heading } from '../../components/Heading';
+
 export default function EventInfoPage() {
   return (
     <div>
-      <h1>日時・場所</h1>
+      <Heading title="日時・場所" />
     </div>
   );
 }

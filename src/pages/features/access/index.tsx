@@ -1,7 +1,9 @@
+import { Heading } from '../../components/Heading';
+
 export default function AccessPage() {
   return (
-    <div className="">
-      <h1>アクセス</h1>
-    </div>
+    <section className="bg-umenobe-yellow">
+      <Heading title="アクセス" />
+    </section>
   );
 }

@@ -1,7 +1,9 @@
+import { Heading } from "../../components/Heading";
+
 export default function Page() {
   return (
-    <section>
-      <h1>イベント</h1>
+    <section className="bg-umenobe-yellow">
+      <Heading title="イベント" />
     </section>
   );
 }

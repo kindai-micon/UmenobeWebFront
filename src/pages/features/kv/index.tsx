@@ -13,11 +13,11 @@ export default function KeyVisualPage() {
         style={{ width: '100%', height: 'auto' }}
       />
       <div className="p-5">
-        <div className="border border-umenobe-gray bg-umenobe-orange py-2 px-4 inline-block">
-          <h2 className="font-dela-one text-5xl tracking-widest text-white title">近畿大学工学部大学祭</h2>
+        <div className="border border-umenobe-gray bg-umenobe-orange py-1 px-3 inline-block">
+          <h2 className="font-dela-one text-4xl tracking-widest text-white title">近畿大学工学部大学祭</h2>
         </div>
         <div>
-          <h1 className="m-1 font-dela-one text-8xl tracking-widest title text-umenobe-orange">第68回 うめの辺祭</h1>
+          <h1 className="m-1 font-dela-one text-6xl tracking-widest title text-umenobe-orange">第68回 うめの辺祭</h1>
         </div>
       </div>
     </section>

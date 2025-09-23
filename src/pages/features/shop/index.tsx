@@ -5,9 +5,9 @@ import { ImageItem, TextItem } from '../../../types/type';
 type Props = {
   imageData: ImageItem[];
   textData: TextItem[];
-}
+};
 
-export default function ShopPage({imageData, textData}: Props) {
+export default function ShopPage({ imageData, textData }: Props) {
   return (
     <section>
       <Heading title="出店" />

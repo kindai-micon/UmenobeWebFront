@@ -1,4 +1,5 @@
-"use client";
+'use client';
+
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 
@@ -16,8 +17,8 @@ export const Shop = ({ imageData, textData }: Props) => {
     }
   }, [imageData]);
 
-  return(
-    <div className='flex flex-col items-center'>
+  return (
+    <div className="flex flex-col items-center">
       <div>
         {guestImage && (
           <Image
@@ -25,10 +26,11 @@ export const Shop = ({ imageData, textData }: Props) => {
             alt="ゲスト画像"
             width={200}
             height={125}
-            className='border-5 border-umenobe-orange rounded-md'
+            className="border-5 border-umenobe-orange rounded-md"
           />
         )}
       </div>
-      <p className='w-[200px] text-center mt-1'>{textData}</p>
+      <p className="w-[200px] text-center mt-1">{textData}</p>
     </div>
-)}
+  );
+};

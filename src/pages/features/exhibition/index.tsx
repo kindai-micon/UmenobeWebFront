@@ -5,13 +5,13 @@ import { ExhibitionList } from './ExhibitionList';
 type Props = {
   imageData: ImageItem[];
   textData: TextItem[];
-}
+};
 
-export default function ExhibitionPage({imageData, textData}: Props) {
+export default function ExhibitionPage({ imageData, textData }: Props) {
   return (
     <section className="bg-umenobe-yellow">
       <Heading title="展示・発表" />
-      <ExhibitionList imageData={imageData} textData={textData}/>
+      <ExhibitionList imageData={imageData} textData={textData} />
     </section>
   );
 }

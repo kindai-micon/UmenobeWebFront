@@ -1,5 +1,7 @@
 import { Shop } from './Shop';
-import { ImageItem, TextItem, FileItem, MergedItem } from '../../../types/type';
+import {
+  ImageItem, TextItem, FileItem, MergedItem,
+} from '../../../types/type';
 
 type Props = {
   imageData: ImageItem[];
@@ -8,32 +10,32 @@ type Props = {
 
 export const ShopList = ({ imageData, textData }: Props) => {
   const shopList = (imageData, textData) => {
-      const map = new Map<string, FileItem>();
+    const map = new Map<string, FileItem>();
 
-      // file 側を Map に登録
-      for (const img of imageData) {
-        map.set(img.name, img);
+    // file 側を Map に登録
+    for (const img of imageData) {
+      map.set(img.name, img);
+    }
+
+    // text 側をループして両方あるものだけ残す
+    const merged: MergedItem[] = [];
+    for (const txt of textData) {
+      const img = map.get(txt.name);
+      if (img) {
+        merged.push({ name: txt.name, filename: img.filename, text: txt.text });
       }
+    }
 
-      // text 側をループして両方あるものだけ残す
-      const merged: MergedItem[] = [];
-      for (const txt of textData) {
-        const img = map.get(txt.name);
-        if (img) {
-          merged.push({ name: txt.name, filename: img.filename, text: txt.text });
-        }
-      }
-
-      return merged;
-  }
+    return merged;
+  };
 
   return (
-    <ul className='mb-8 flex justify-center gap-8'>
-      {shopList(imageData, textData).map((item) => {
-        return (
-        <li key={item.name}>
-          <Shop imageData={item.filename} textData={item.text} />
-        </li>
-      )})}
+    <ul className="mb-8 flex justify-center gap-8">
+      {shopList(imageData, textData).map((item) => (
+          <li key={item.name}>
+            <Shop imageData={item.filename} textData={item.text} />
+          </li>
+      ))}
     </ul>
-)};
+  );
+};

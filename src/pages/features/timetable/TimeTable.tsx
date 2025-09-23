@@ -1,22 +1,22 @@
 // components/TimetableGrid.tsx
 type RawItem = { name: string; text?: string };
-  
-type Place = "野外ステージ" | "多目的ホール";
+
+type Place = '野外ステージ' | '多目的ホール';
 
 type Event = {
   place: Place;
   startMin: number; // 分（0:00基準ではなく当日分）
-  endMin: number;   // 分（終了は非含む扱い）
+  endMin: number; // 分（終了は非含む扱い）
   label: string;
 };
 
 // FIXME: プログラムの開始時刻や終了時刻は5分刻み？10分刻み？
-const SLOT_MIN = 5;               // 粒度：5分刻み
-const DEFAULT_DURATION = 30;      // 終了時刻が無い場合の仮の長さ（分）
+const SLOT_MIN = 5; // 粒度：5分刻み
+const DEFAULT_DURATION = 30; // 終了時刻が無い場合の仮の長さ（分）
 
 // "HH:MM" -> 分
 function toMinutes(hhmm: string): number {
-  const [h, m] = hhmm.split(":").map((v) => parseInt(v, 10));
+  const [h, m] = hhmm.split(':').map((v) => parseInt(v, 10));
   return h * 60 + m;
 }
 
@@ -31,7 +31,7 @@ function parseName(name: string): { start: number; end: number; place: Place } |
   const [, s, e, p] = m;
   const start = toMinutes(s);
   const end = e ? toMinutes(e) : start + DEFAULT_DURATION;
-  const place = (p as Place) ?? "野外ステージ"; // 場所が無い場合は仮で野外ステージに入れる
+  const place = (p as Place) ?? '野外ステージ'; // 場所が無い場合は仮で野外ステージに入れる
 
   return { start, end, place };
 }
@@ -71,17 +71,17 @@ function minutesRange(minStart: number, maxEnd: number): number[] {
 function fmt(mins: number): string {
   const h = Math.floor(mins / 60);
   const m = mins % 60;
-  return `${String(h).padStart(2, "0")}:${String(m).padStart(2, "0")}`;
+  return `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}`;
 }
 
 type Props = { data: RawItem[]; places?: Place[] }; // 列として出したい場所配列（省略時は ["野外ステージ","多目的ホール"]）
 
-export const TimeTable = ({ data, places = ["野外ステージ", "多目的ホール"] }: Props) => {
+export const TimeTable = ({ data, places = ['野外ステージ', '多目的ホール'] }: Props) => {
   const events = normalize(data);
 
   // 表示範囲（全イベントの最小開始～最大終了）
-  const minStart = floorToSlot(Math.min(...events.map(e => e.startMin)));
-  const maxEnd   = ceilToSlot(Math.max(...events.map(e => e.endMin)));
+  const minStart = floorToSlot(Math.min(...events.map((e) => e.startMin)));
+  const maxEnd = ceilToSlot(Math.max(...events.map((e) => e.endMin)));
   const slots = minutesRange(minStart, maxEnd); // 各行に相当（時間軸）
 
   // 場所ごとにイベントを時系列で管理
@@ -122,9 +122,16 @@ export const TimeTable = ({ data, places = ["野外ステージ", "多目的ホ�
       <table className="text-center border-separate border-spacing-4">
         <thead>
           <tr>
-            <th className="stroke-text text-white bg-umenobe-orange px-6 py-3 border border-umenobe-gray">時間</th>
+            <th className="stroke-text text-white bg-umenobe-orange px-6 py-3 border border-umenobe-gray">
+              時間
+            </th>
             {places.map((p) => (
-              <th key={p} className="stroke-text text-white bg-umenobe-orange px-6 py-3 border border-umenobe-gray">{p}</th>
+              <th
+                key={p}
+                className="stroke-text text-white bg-umenobe-orange px-6 py-3 border border-umenobe-gray"
+              >
+                {p}
+              </th>
             ))}
           </tr>
         </thead>
@@ -132,35 +139,49 @@ export const TimeTable = ({ data, places = ["野外ステージ", "多目的ホ�
           {slots.map((t) => (
             <tr key={t}>
               {/* 時刻セル（毎行に表示 / 5分刻み） */}
-              <td className="text-umenobe-dark-blue bg-umenobe-light-yellow px-2 py-1 border border-umenobe-dark-gray">{fmt(t)}</td>
+              <td className="text-umenobe-dark-blue bg-umenobe-light-yellow px-2 py-1 border border-umenobe-dark-gray">
+                {fmt(t)}
+              </td>
 
-              {places.filter((p) => {
-                // rowSpanで覆われているセルはスキップ
-                const covered = coverMap[p][t];
-                const head = isEventHead(p, t);
-                return head || !covered;
-              }).map((p) => {
-                const head = isEventHead(p, t);
+              {places
+                .filter((p) => {
+                  // rowSpanで覆われているセルはスキップ
+                  const covered = coverMap[p][t];
+                  const head = isEventHead(p, t);
+                  return head || !covered;
+                })
+                .map((p) => {
+                  const head = isEventHead(p, t);
 
-                if (head) {
-                  // 新規イベント開始セルを描く
+                  if (head) {
+                    // 新規イベント開始セルを描く
+                    return (
+                      <td
+                        key={p}
+                        className="text-umenobe-dark-blue bg-white px-2 py-1 border border-umenobe-dark-gray"
+                        rowSpan={eventRowSpan(head)}
+                      >
+                        <div className="font-medium">{head.label}</div>
+                        <div className="text-xs text-gray-600">
+                          {fmt(head.startMin)}–{fmt(head.endMin)}
+                        </div>
+                      </td>
+                    );
+                  }
+                  // 何もないスロットは空セル
                   return (
-                    <td key={p} className="text-umenobe-dark-blue bg-white px-2 py-1 border border-umenobe-dark-gray"
-                        rowSpan={eventRowSpan(head)}>
-                      <div className="font-medium">{head.label}</div>
-                      <div className="text-xs text-gray-600">
-                        {fmt(head.startMin)}–{fmt(head.endMin)}
-                      </div>
+                    <td
+                      key={p}
+                      className="align-top text-umenobe-dark-gray bg-umenobe-light-yellow px-2 py-1 border border-umenobe-dark-gray"
+                    >
+                      -
                     </td>
                   );
-                }
-                // 何もないスロットは空セル
-                return <td key={p} className="align-top text-umenobe-dark-gray bg-umenobe-light-yellow px-2 py-1 border border-umenobe-dark-gray">-</td>;
-              })}
+                })}
             </tr>
           ))}
         </tbody>
       </table>
     </div>
   );
-}
+};

@@ -16,7 +16,7 @@
   font-family: var(--font-zenkaku), sans-serif;
 }
 
-.title {
+.stroke-text {
   -webkit-text-stroke-width: 1px;
   -webkit-text-stroke-color: #939393;
 }

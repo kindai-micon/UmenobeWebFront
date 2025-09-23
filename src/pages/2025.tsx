@@ -24,7 +24,7 @@ export default function Page({imageData, textData}: Props) {
 
       <div>
         <KeyVisualPage imageData={imageData} textData={textData} />
-        <EventInfoPage imageData={imageData} textData={textData} />
+        <EventInfoPage />
         <TimeTablePage imageData={imageData} textData={textData} />
         <GuestPage imageData={imageData} textData={textData}/>
         <TournamentPage imageData={imageData} textData={textData} />

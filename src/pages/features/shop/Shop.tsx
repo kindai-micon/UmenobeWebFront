@@ -17,15 +17,18 @@ export const Shop = ({ imageData, textData }: Props) => {
   }, [imageData]);
 
   return(
-    <div>
-      {guestImage && (
-        <Image
-          src={guestImage}
-          alt="ゲスト画像"
-          width={150}
-          height={100}
-        />
-      )}
-      <h1>{textData}</h1>
+    <div className='flex flex-col items-center'>
+      <div>
+        {guestImage && (
+          <Image
+            src={guestImage}
+            alt="ゲスト画像"
+            width={200}
+            height={125}
+            className='border-5 border-umenobe-orange rounded-md'
+          />
+        )}
+      </div>
+      <p className='w-[200px] text-center mt-1'>{textData}</p>
     </div>
 )}

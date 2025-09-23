@@ -28,7 +28,7 @@ export const ShopList = ({ imageData, textData }: Props) => {
   }
 
   return (
-    <ul>
+    <ul className='mb-8 flex justify-center gap-8'>
       {shopList(imageData, textData).map((item) => {
         return (
         <li key={item.name}>

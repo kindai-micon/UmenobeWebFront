@@ -11,6 +11,7 @@ import CorporationPage from './features/corporation';
 import AccessPage from './features/access';
 import GuestPage from './features/guest';
 import { ImageItem, TextItem } from '../types/type';
+import { Footer } from "./components/Footer";
 
 type Props = {
   imageData: ImageItem[];
@@ -36,17 +37,24 @@ export default function Page({imageData, textData}: Props) {
           textData={textData}
         />
         <TournamentPage
-          imageData={imageData}
-          textData={textData}
+          // imageData={imageData}
+          // textData={textData}
         />
         <ShopPage
           imageData={imageData}
           textData={textData}
         />
-        <ExhibitionPage imageData={imageData} textData={textData} />
-        <CorporationPage imageData={imageData} textData={textData} />
-        <AccessPage imageData={imageData} textData={textData} />
+        <ExhibitionPage
+          imageData={imageData}
+          textData={textData}
+        />
+        <CorporationPage
+          imageData={imageData}
+          textData={textData}
+          />
+        <AccessPage />
       </div>
+      <Footer />
     </div>
   );
 }

@@ -5,13 +5,15 @@ type Place = '野外ステージ' | '多目的ホール';
 
 type Event = {
   place: Place;
-  startMin: number; // 分（0:00基準ではなく当日分）
-  endMin: number; // 分（終了は非含む扱い）
+  startMin: number; // 分（スロット用の開始時間）
+  endMin: number; // 分（スロット用の終了時間）
+  actualStartMin: number; // 分（実際の開始時間）
+  actualEndMin: number; // 分（実際の終了時間）
   label: string;
 };
 
 // FIXME: プログラムの開始時刻や終了時刻は5分刻み？10分刻み？
-const SLOT_MIN = 5; // 粒度：5分刻み
+const SLOT_MIN = 15; // 粒度：5分刻み
 const DEFAULT_DURATION = 30; // 終了時刻が無い場合の仮の長さ（分）
 
 // "HH:MM" -> 分
@@ -54,8 +56,10 @@ function normalize(items: RawItem[]): Event[] {
       const end = Math.max(ceilToSlot(parsed.end), start + SLOT_MIN); // 最低1スロット
       return {
         place: parsed.place,
-        startMin: start,
-        endMin: end,
+        startMin: start, // スロット用（例: 10:30）
+        endMin: end, // スロット用（例: 11:00）
+        actualStartMin: parsed.start, // 実際の時間（例: 10:35）
+        actualEndMin: parsed.end, // 実際の時間（例: 10:55）
         label: it.text?.trim() || it.name,
       } as Event;
     })
@@ -163,7 +167,7 @@ export const TimeTable = ({ data, places = ['野外ステージ', '多目的ホ�
                       >
                         <div className="font-medium">{head.label}</div>
                         <div className="text-xs text-gray-600">
-                          {fmt(head.startMin)}–{fmt(head.endMin)}
+                          {fmt(head.actualStartMin)}–{fmt(head.actualEndMin)}
                         </div>
                       </td>
                     );

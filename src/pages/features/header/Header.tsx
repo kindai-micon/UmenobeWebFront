@@ -1,3 +1,6 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars } from "@fortawesome/free-solid-svg-icons";
+
 export function Header() {
   return (
     <header className="bg-umenobe-yellow p-4 flex justify-between items-center">
@@ -13,16 +16,9 @@ export function Header() {
           </h1>
         </div>
       </div>
-      <div>
-        <nav>
-          <ul>
-            <li>ホーム</li>
-            <li>イベント</li>
-            <li>アクセス</li>
-            <li>お問い合わせ</li>
-          </ul>
-        </nav>
-      </div>
+      <button className="bg-umenobe-orange px-4 py-3 rounded-md border border-umenobe-gray">
+        <FontAwesomeIcon icon={faBars} className="text-4xl text-white stroke-umenobe-gray stroke-10" />
+      </button>
     </header>
   );
 }

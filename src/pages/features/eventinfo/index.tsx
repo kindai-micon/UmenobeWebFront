@@ -12,7 +12,7 @@ export default function EventInfoPage() {
                 日時
               </td>
               <td className="text-umenobe-dark-blue bg-umenobe-yellow px-10 py-5 border border-umenobe-gray">
-                2025年10月26日（土）
+                2025年10月25日（土）
                 <br />
                 10:00～
               </td>

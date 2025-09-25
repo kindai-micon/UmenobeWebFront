@@ -13,7 +13,7 @@ type Event = {
 };
 
 // FIXME: プログラムの開始時刻や終了時刻は5分刻み？10分刻み？
-const SLOT_MIN = 15; // 粒度：5分刻み
+const SLOT_MIN = 15; // 粒度：15分刻み
 const DEFAULT_DURATION = 30; // 終了時刻が無い場合の仮の長さ（分）
 
 // "HH:MM" -> 分

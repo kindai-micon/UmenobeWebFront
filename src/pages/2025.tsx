@@ -23,9 +23,13 @@ function MainContent() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const resImg = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}ImageKeyValues.json`);
+        const resImg = await fetch(
+          `${process.env.NEXT_PUBLIC_API_BASE_URL}ImageKeyValues.json`,
+        );
         const imageData = await resImg.json();
-        const resText = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}TextKeyValues.json`);
+        const resText = await fetch(
+          `${process.env.NEXT_PUBLIC_API_BASE_URL}TextKeyValues.json`,
+        );
         const textData = await resText.json();
 
         setImageData(imageData);
@@ -59,7 +63,11 @@ export default function Page() {
     <div>
       <Header />
       <Suspense
-        fallback={<div className="flex justify-center items-center h-screen">Loading...</div>}
+        fallback={
+          <div className="flex justify-center items-center h-screen">
+            Loading...
+          </div>
+        }
       >
         <MainContent />
       </Suspense>

@@ -50,13 +50,17 @@ export const Corp = ({ imageData, textData }: Props) => {
         </div>
         {corpName && (
           <p className="my-4 tracking-widest">
-            <span className="bg-umenobe-lightblue px-3 py-1 rounded-sm mr-2">場所</span>
+            <span className="bg-umenobe-lightblue px-3 py-1 rounded-sm mr-2">
+              場所
+            </span>
             {corpName}
           </p>
         )}
         {corpName && (
           <p className="my-4 tracking-widest">
-            <span className="bg-umenobe-lightblue px-3 py-1 rounded-sm mr-2">時間</span>
+            <span className="bg-umenobe-lightblue px-3 py-1 rounded-sm mr-2">
+              時間
+            </span>
             {corpName}
           </p>
         )}

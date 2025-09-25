@@ -14,7 +14,7 @@ const data = [
 
 export default function TimeTablePage() {
   return (
-    <section className="bg-umenobe-yellow pb-8" id='timetable'>
+    <section className="bg-umenobe-yellow pb-8" id="timetable">
       <Heading title="タイムテーブル" />
       <TimeTable data={data} />
     </section>

@@ -17,7 +17,9 @@ const zenkaku = Zen_Kaku_Gothic_New({
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <div className={`${delaOne.variable} ${zenkaku.variable} font-dela-one font-zenkaku text-umenobe-black tracking-wider`}>
+    <div
+      className={`${delaOne.variable} ${zenkaku.variable} font-dela-one font-zenkaku text-umenobe-black tracking-wider`}
+    >
       <Component {...pageProps} />
     </div>
   );

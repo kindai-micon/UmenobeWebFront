@@ -2,7 +2,7 @@ import { Heading } from '@/components/Heading';
 
 export default function AccessPage() {
   return (
-    <section id='access'>
+    <section id="access">
       <Heading title="交通アクセス" />
       <div className="pb-8">
         <iframe
@@ -15,7 +15,7 @@ export default function AccessPage() {
           referrerPolicy="no-referrer-when-downgrade"
         ></iframe>
       </div>
-      <div className='pb-8'>
+      <div className="pb-8">
         <Heading title="お車でお越しの方へ" />
       </div>
     </section>

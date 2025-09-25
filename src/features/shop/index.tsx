@@ -1,6 +1,6 @@
 import { Heading } from '@/components/Heading';
-import { ShopList } from './ShopList';
 import { ImageItem, TextItem } from '@/types/type';
+import { ShopList } from './ShopList';
 
 type Props = {
   imageData: ImageItem[];
@@ -9,7 +9,7 @@ type Props = {
 
 export default function ShopPage({ imageData, textData }: Props) {
   return (
-    <section id='shop'>
+    <section id="shop">
       <Heading title="出店" />
       <ShopList imageData={imageData} textData={textData} />
     </section>

@@ -25,7 +25,9 @@ function toMinutes(hhmm: string): number {
 // name 例:
 // "10:00@屋外ステージ", "10:25-11:15@野外外ステージ", "10:40-12:30@多目的ホール"
 // 空白区切りでもOK: "10:25-11:15 野外ステージ"
-function parseName(name: string): { start: number; end: number; place: Place } | null {
+function parseName(
+  name: string,
+): { start: number; end: number; place: Place } | null {
   const re = /^(\d{1,2}:\d{2})(?:\s*[-–]\s*(\d{1,2}:\d{2}))?(?:\s*(?:@|\s+)\s*(野外ステージ|多目的ホール))?$/;
   const m = name.trim().match(re);
   if (!m) return null;
@@ -80,7 +82,10 @@ function fmt(mins: number): string {
 
 type Props = { data: RawItem[]; places?: Place[] }; // 列として出したい場所配列（省略時は ["野外ステージ","多目的ホール"]）
 
-export const TimeTable = ({ data, places = ['野外ステージ', '多目的ホール'] }: Props) => {
+export const TimeTable = ({
+  data,
+  places = ['野外ステージ', '多目的ホール'],
+}: Props) => {
   const events = normalize(data);
 
   // 表示範囲（全イベントの最小開始～最大終了）

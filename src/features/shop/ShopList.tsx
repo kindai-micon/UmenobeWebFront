@@ -1,8 +1,8 @@
-import { XShop } from './XShop';
-import { YShop } from './YShop';
 import {
   ImageItem, TextItem, FileItem, MergedItem,
 } from '@/types/type';
+import { XShop } from './XShop';
+import { YShop } from './YShop';
 
 type Props = {
   imageData: ImageItem[];

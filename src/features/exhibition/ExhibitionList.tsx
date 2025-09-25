@@ -1,5 +1,5 @@
-import { Exhibition } from './Exhibition';
 import { ImageItem, TextItem } from '@/types/type';
+import { Exhibition } from './Exhibition';
 
 type Props = {
   imageData: ImageItem[];

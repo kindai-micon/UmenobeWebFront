@@ -9,7 +9,7 @@ type Props = {
 
 export default function ExhibitionPage({ imageData, textData }: Props) {
   return (
-    <section className="bg-umenobe-yellow" id='exhibition'>
+    <section className="bg-umenobe-yellow" id="exhibition">
       <Heading title="展示・発表" />
       <ExhibitionList imageData={imageData} textData={textData} />
     </section>

@@ -1,7 +1,8 @@
-"use client";
+'use client';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faXmark } from '@fortawesome/free-solid-svg-icons';
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import Link from 'next/link';
 
 export function Header() {
@@ -33,12 +34,14 @@ export function Header() {
             </h1>
           </div>
         </div>
-        <button 
+        <button
           className="bg-umenobe-orange px-4 py-3 rounded-md border border-umenobe-gray"
-          onClick={() => {setOpen((v) => !v);}}
+          onClick={() => {
+            setOpen((v) => !v);
+          }}
           ref={toggleBtnRef}
-          aria-label='メニューを開く'
-          >
+          aria-label="メニューを開く"
+        >
           <FontAwesomeIcon
             icon={faBars}
             className="text-4xl text-white stroke-umenobe-gray stroke-10"
@@ -86,15 +89,70 @@ export function Header() {
             </div>
 
             <nav className="flex flex-col gap-3">
-              <Link ref={firstLinkRef} className="font-dela-one tracking-widest text-umenobe-dark-blue text-lg py-2 px-2 rounded hover:bg-umenobe-light-orange focus:outline-none focus:ring" onClick={handleLinkClick} href="#eventinfo">日時・場所</Link>
-              <Link className="font-dela-one tracking-widest text-umenobe-dark-blue text-lg py-2 px-2 rounded hover:bg-umenobe-light-orange focus:outline-none focus:ring" onClick={handleLinkClick} href="#timetable">タイムテーブル</Link>
-              <Link className="font-dela-one tracking-widest text-umenobe-dark-blue text-lg py-2 px-2 rounded hover:bg-umenobe-light-orange focus:outline-none focus:ring" onClick={handleLinkClick} href="#guest">ゲスト情報</Link>
-              <Link className="font-dela-one tracking-widest text-umenobe-dark-blue text-lg py-2 px-2 rounded hover:bg-umenobe-light-orange focus:outline-none focus:ring" onClick={handleLinkClick} href="#tournament">イベント</Link>
-              <Link className="font-dela-one tracking-widest text-umenobe-dark-blue text-lg py-2 px-2 rounded hover:bg-umenobe-light-orange focus:outline-none focus:ring" onClick={handleLinkClick} href="#shop">出店</Link>
-              <Link className="font-dela-one tracking-widest text-umenobe-dark-blue text-lg py-2 px-2 rounded hover:bg-umenobe-light-orange focus:outline-none focus:ring" onClick={handleLinkClick} href="#exhibition">展示・発表</Link>
-              <Link className="font-dela-one tracking-widest text-umenobe-dark-blue text-lg py-2 px-2 rounded hover:bg-umenobe-light-orange focus:outline-none focus:ring" onClick={handleLinkClick} href="#corporation">企業・団体様出展</Link>
-              <Link className="font-dela-one tracking-widest text-umenobe-dark-blue text-lg py-2 px-2 rounded hover:bg-umenobe-light-orange focus:outline-none focus:ring" onClick={handleLinkClick} href="#firework">打ち上げ花火</Link>
-              <Link className="font-dela-one tracking-widest text-umenobe-dark-blue text-lg py-2 px-2 rounded hover:bg-umenobe-light-orange focus:outline-none focus:ring" onClick={handleLinkClick} href="#access">交通アクセス</Link>
+              <Link
+                ref={firstLinkRef}
+                className="font-dela-one tracking-widest text-umenobe-dark-blue text-lg py-2 px-2 rounded hover:bg-umenobe-light-orange focus:outline-none focus:ring"
+                onClick={handleLinkClick}
+                href="#eventinfo"
+              >
+                日時・場所
+              </Link>
+              <Link
+                className="font-dela-one tracking-widest text-umenobe-dark-blue text-lg py-2 px-2 rounded hover:bg-umenobe-light-orange focus:outline-none focus:ring"
+                onClick={handleLinkClick}
+                href="#timetable"
+              >
+                タイムテーブル
+              </Link>
+              <Link
+                className="font-dela-one tracking-widest text-umenobe-dark-blue text-lg py-2 px-2 rounded hover:bg-umenobe-light-orange focus:outline-none focus:ring"
+                onClick={handleLinkClick}
+                href="#guest"
+              >
+                ゲスト情報
+              </Link>
+              <Link
+                className="font-dela-one tracking-widest text-umenobe-dark-blue text-lg py-2 px-2 rounded hover:bg-umenobe-light-orange focus:outline-none focus:ring"
+                onClick={handleLinkClick}
+                href="#tournament"
+              >
+                イベント
+              </Link>
+              <Link
+                className="font-dela-one tracking-widest text-umenobe-dark-blue text-lg py-2 px-2 rounded hover:bg-umenobe-light-orange focus:outline-none focus:ring"
+                onClick={handleLinkClick}
+                href="#shop"
+              >
+                出店
+              </Link>
+              <Link
+                className="font-dela-one tracking-widest text-umenobe-dark-blue text-lg py-2 px-2 rounded hover:bg-umenobe-light-orange focus:outline-none focus:ring"
+                onClick={handleLinkClick}
+                href="#exhibition"
+              >
+                展示・発表
+              </Link>
+              <Link
+                className="font-dela-one tracking-widest text-umenobe-dark-blue text-lg py-2 px-2 rounded hover:bg-umenobe-light-orange focus:outline-none focus:ring"
+                onClick={handleLinkClick}
+                href="#corporation"
+              >
+                企業・団体様出展
+              </Link>
+              <Link
+                className="font-dela-one tracking-widest text-umenobe-dark-blue text-lg py-2 px-2 rounded hover:bg-umenobe-light-orange focus:outline-none focus:ring"
+                onClick={handleLinkClick}
+                href="#firework"
+              >
+                打ち上げ花火
+              </Link>
+              <Link
+                className="font-dela-one tracking-widest text-umenobe-dark-blue text-lg py-2 px-2 rounded hover:bg-umenobe-light-orange focus:outline-none focus:ring"
+                onClick={handleLinkClick}
+                href="#access"
+              >
+                交通アクセス
+              </Link>
             </nav>
           </div>
         </div>

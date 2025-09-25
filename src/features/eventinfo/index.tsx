@@ -1,4 +1,4 @@
-import { Heading } from '@/pages/components/Heading';
+import { Heading } from '@/components/Heading';
 
 export default function EventInfoPage() {
   return (

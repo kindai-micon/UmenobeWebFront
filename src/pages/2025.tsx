@@ -2,19 +2,19 @@
 
 import { Suspense, useEffect, useState } from 'react';
 
-import { Header } from '@/pages/features/header/Header';
-import KeyVisualPage from '@/pages/features/kv';
-import EventInfoPage from '@/pages/features/eventinfo';
-import TimeTablePage from '@/pages/features/timetable';
-import TournamentPage from '@/pages/features/tournament';
-import ShopPage from '@/pages/features/shop';
-import ExhibitionPage from '@/pages/features/exhibition';
-import CorporationPage from '@/pages/features/corporation';
-import AccessPage from '@/pages/features/access';
-import GuestPage from '@/pages/features/guest';
-import FireworkPage from '@/pages/features/firework';
+import { Header } from '@/features/header/Header';
+import KeyVisualPage from '@/features/kv';
+import EventInfoPage from '@/features/eventinfo';
+import TimeTablePage from '@/features/timetable';
+import TournamentPage from '@/features/tournament';
+import ShopPage from '@/features/shop';
+import ExhibitionPage from '@/features/exhibition';
+import CorporationPage from '@/features/corporation';
+import AccessPage from '@/features/access';
+import GuestPage from '@/features/guest';
+import FireworkPage from '@/features/firework';
 import { ImageItem, TextItem } from '@/types/type';
-import { Footer } from '@/pages/components/Footer';
+import { Footer } from '@/components/Footer';
 
 function MainContent() {
   const [imageData, setImageData] = useState<ImageItem[]>([]);

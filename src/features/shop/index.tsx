@@ -1,4 +1,4 @@
-import { Heading } from '@/pages/components/Heading';
+import { Heading } from '@/components/Heading';
 import { ShopList } from './ShopList';
 import { ImageItem, TextItem } from '@/types/type';
 

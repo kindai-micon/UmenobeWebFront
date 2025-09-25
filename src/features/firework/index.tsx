@@ -1,4 +1,4 @@
-import { Heading } from '@/pages/components/Heading';
+import { Heading } from '@/components/Heading';
 import { Firework } from './Firework';
 
 export default function FireworkPage() {

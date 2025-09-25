@@ -1,4 +1,4 @@
-import { Heading } from '@/pages/components/Heading';
+import { Heading } from '@/components/Heading';
 import { Guest } from './Guest';
 import { ImageItem, TextItem } from '@/types/type';
 

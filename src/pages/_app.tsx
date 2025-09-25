@@ -11,13 +11,13 @@ const delaOne = Dela_Gothic_One({
 
 const zenkaku = Zen_Kaku_Gothic_New({
   subsets: ['latin'],
-  weight: '400',
+  weight: ['400', '700', '900'],
   variable: '--font-zenkaku',
 });
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <div className={`${delaOne.variable} ${zenkaku.variable} font-dela-one font-zenkaku`}>
+    <div className={`${delaOne.variable} ${zenkaku.variable} font-dela-one font-zenkaku text-umenobe-black tracking-wider`}>
       <Component {...pageProps} />
     </div>
   );

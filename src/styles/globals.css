@@ -2,4 +2,29 @@
 
 @theme {
   --color-umenobe-yellow:  #FFFF79;
+  --color-umenobe-light-yellow:  #FFFFA8;
+  --color-umenobe-dark-yellow:  #FFFF42;
+  --color-umenobe-orange: #FCC511;
+  --color-umenobe-light-orange: #FCCD40;
+  --color-umenobe-lighten-orange: #FCDA72;
+  --color-umenobe-gray: #939393;
+  --color-umenobe-dark-gray: #777777;
+  --color-umenobe-black: #333333;
+  --color-umenobe-dark-blue: #1574A2;
+  --color-umenobe-lightblue: #79EEFF;
+  --color-umenobe-dark-lightblue: #0FE3FF;
+  --color-umenobe-red: #FC1111;
+}
+
+.font-dela-one {
+  font-family: var(--font-dela-one), sans-serif;
+}
+
+.font-zenkaku {
+  font-family: var(--font-zenkaku), sans-serif;
+}
+
+.stroke-text {
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: #939393;
 }

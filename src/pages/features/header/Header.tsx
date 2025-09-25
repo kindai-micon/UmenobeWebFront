@@ -12,7 +12,7 @@ export function Header() {
         </div>
         <div>
           <h1 className="m-1 font-dela-one text-4xl tracking-widest text-umenobe-orange stroke-text">
-            第68回 うめの辺祭
+            第67回 うめの辺祭
           </h1>
         </div>
       </div>

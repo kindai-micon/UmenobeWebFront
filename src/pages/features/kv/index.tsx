@@ -20,7 +20,7 @@ export default function KeyVisualPage() {
         </div>
         <div>
           <h1 className="m-1 font-dela-one text-6xl tracking-widest text-umenobe-orange stroke-text">
-            第68回 うめの辺祭
+            第67回 うめの辺祭
           </h1>
         </div>
       </div>

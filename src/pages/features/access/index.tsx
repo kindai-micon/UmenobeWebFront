@@ -2,7 +2,7 @@ import { Heading } from '../../components/Heading';
 
 export default function AccessPage() {
   return (
-    <section>
+    <section id='access'>
       <Heading title="交通アクセス" />
       <div className="pb-8">
         <iframe

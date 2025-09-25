@@ -2,7 +2,7 @@ import { Heading } from '../../components/Heading';
 
 export default function EventInfoPage() {
   return (
-    <section>
+    <section id='eventinfo'>
       <Heading title="日時・場所" />
       <div className="mb-8 flex justify-center font-dela-one tracking-widest text-2xl">
         <table className="text-center border-separate border-spacing-4">

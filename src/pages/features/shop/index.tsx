@@ -9,7 +9,7 @@ type Props = {
 
 export default function ShopPage({ imageData, textData }: Props) {
   return (
-    <section>
+    <section id='shop'>
       <Heading title="出店" />
       <ShopList imageData={imageData} textData={textData} />
     </section>

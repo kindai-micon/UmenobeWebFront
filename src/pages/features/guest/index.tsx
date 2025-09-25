@@ -9,7 +9,7 @@ type Props = {
 
 export default function GuestPage({ imageData, textData }: Props) {
   return (
-    <section className="flex flex-col items-center">
+    <section className="flex flex-col items-center" id='guest'>
       <Heading title="ゲスト情報" />
       <Guest imageData={imageData} textData={textData} />
     </section>

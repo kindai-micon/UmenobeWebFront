@@ -31,7 +31,7 @@ export const Guest = ({ imageData, textData }: Props) => {
   }, [imageData, textData]);
 
   return (
-    <div className="w-1/2 p-8 bg-umenobe-light-orange flex gap-4 mb-8 rounded-md">
+    <div className="w-1/2 p-8 bg-umenobe-light-orange flex gap-8 mb-8 rounded-md">
       <div className="flex justify-center items-center w-1/2">
         {guestImage && (
           <Image

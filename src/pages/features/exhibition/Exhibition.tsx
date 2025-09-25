@@ -29,7 +29,7 @@ export const Exhibition = ({ imageData, textData }: Props) => {
   }, [imageData, textData]);
 
   return (
-    <div className="w-1/2 p-8 bg-white flex gap-4 mb-8 rounded-md">
+    <div className="w-1/2 p-8 bg-white flex justify-center items-center gap-8 mb-8 rounded-md">
       <div className="flex justify-center items-center w-1/2">
         {exhibitImage && (
           <Image
@@ -48,14 +48,30 @@ export const Exhibition = ({ imageData, textData }: Props) => {
             {exhibitName}
           </h1>
         </div>
-        <p className="my-4 tracking-widest">
-          <span className="bg-umenobe-lightblue px-3 py-1 rounded-sm mr-2">場所</span>
-          {exhibitName}
-        </p>
+        { exhibitName && (
+          <p className="my-4 tracking-widest">
+            <span className="bg-umenobe-lightblue px-3 py-1 rounded-sm mr-2">場所</span>
+            {exhibitName}
+          </p>
+        )}
+        { exhibitName && (
+          <p className="my-4 tracking-widest">
+            <span className="bg-umenobe-lightblue px-3 py-1 rounded-sm mr-2">時間</span>
+            {exhibitName}
+          </p>
+        )}
         <p>
           {exhibitInfo}
           ゲストの紹介ですゲストの紹介ですゲストの紹介ですゲストの紹介ですゲストの紹介ですゲストの紹介ですゲストの紹介ですゲストの紹介ですゲストの紹介ですゲストの紹介ですゲストの紹介ですゲストの紹介ですゲストの紹介です
         </p>
+        { exhibitName && (
+          <p className="my-4 tracking-widest">
+            <span className="py-1 rounded-sm">HP：</span>
+            <a href="#">
+              {exhibitName}
+            </a>
+          </p>
+        )}
       </div>
     </div>
   );

@@ -30,7 +30,8 @@ export const Shop = ({ imageData, textData }: Props) => {
           />
         )}
       </div>
-      <p className="w-[200px] text-center mt-1">{textData}</p>
+      <p className="w-[200px] text-center mt-1 text-bold">{textData}</p>
+      <p>{textData}{textData}</p>
     </div>
   );
 };

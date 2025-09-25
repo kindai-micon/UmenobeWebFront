@@ -8,7 +8,7 @@ type Props = {
   textData: string;
 };
 
-export const Shop = ({ imageData, textData }: Props) => {
+export const XShop = ({ imageData, textData }: Props) => {
   const [guestImage, setGuestImage] = useState<string>('');
   useEffect(() => {
     if (imageData) {

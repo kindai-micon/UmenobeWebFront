@@ -1,4 +1,5 @@
-import { Shop } from './Shop';
+import { XShop } from './XShop';
+import { YShop } from './YShop';
 import {
   ImageItem, TextItem, FileItem, MergedItem,
 } from '../../../types/type';
@@ -30,12 +31,21 @@ export const ShopList = ({ imageData, textData }: Props) => {
   };
 
   return (
-    <ul className="mb-8 flex justify-center gap-8">
-      {shopList(imageData, textData).map((item) => (
-          <li key={item.name}>
-            <Shop imageData={item.filename} textData={item.text} />
-          </li>
-      ))}
-    </ul>
+    <>
+      <ul className="mb-8 flex justify-center gap-8">
+        {shopList(imageData, textData).map((item) => (
+            <li key={item.name}>
+              <XShop imageData={item.filename} textData={item.text} />
+            </li>
+        ))}
+      </ul>
+      <ul className="mb-8 flex justify-center gap-8">
+        {shopList(imageData, textData).map((item) => (
+            <li key={item.name}>
+              <YShop imageData={item.filename} textData={item.text} />
+            </li>
+        ))}
+      </ul>
+    </>
   );
 };

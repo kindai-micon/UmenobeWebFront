@@ -1,4 +1,5 @@
-"use client";
+'use client';
+
 import { Suspense, useEffect, useState } from 'react';
 
 import { Header } from './features/header/Header';
@@ -25,7 +26,7 @@ function MainContent() {
         const imageData = await resImg.json();
         const resText = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}TextKeyValues.json`);
         const textData = await resText.json();
-        
+
         setImageData(imageData);
         setTextData(textData);
       } catch (error) {
@@ -55,7 +56,9 @@ export default function Page() {
   return (
     <div>
       <Header />
-      <Suspense fallback={<div className="flex justify-center items-center h-screen">Loading...</div>}>
+      <Suspense
+        fallback={<div className="flex justify-center items-center h-screen">Loading...</div>}
+      >
         <MainContent />
       </Suspense>
       <Footer />

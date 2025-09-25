@@ -1,5 +1,5 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBars } from '@fortawesome/free-solid-svg-icons';
 
 export function Header() {
   return (
@@ -17,7 +17,10 @@ export function Header() {
         </div>
       </div>
       <button className="bg-umenobe-orange px-4 py-3 rounded-md border border-umenobe-gray">
-        <FontAwesomeIcon icon={faBars} className="text-4xl text-white stroke-umenobe-gray stroke-10" />
+        <FontAwesomeIcon
+          icon={faBars}
+          className="text-4xl text-white stroke-umenobe-gray stroke-10"
+        />
       </button>
     </header>
   );

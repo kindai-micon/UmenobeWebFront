@@ -7,9 +7,9 @@ type Props = {
 };
 
 export const CorpList = ({ imageData, textData }: Props) => (
-    <div className="p-4 flex flex-col items-center justify-center gap-8">
-      <Corp imageData={imageData} textData={textData} />
-      <Corp imageData={imageData} textData={textData} />
-      <Corp imageData={imageData} textData={textData} />
-    </div>
+  <div className="p-4 flex flex-col items-center justify-center gap-8">
+    <Corp imageData={imageData} textData={textData} />
+    <Corp imageData={imageData} textData={textData} />
+    <Corp imageData={imageData} textData={textData} />
+  </div>
 );

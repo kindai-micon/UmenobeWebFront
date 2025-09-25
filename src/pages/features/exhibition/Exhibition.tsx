@@ -48,13 +48,13 @@ export const Exhibition = ({ imageData, textData }: Props) => {
             {exhibitName}
           </h1>
         </div>
-        { exhibitName && (
+        {exhibitName && (
           <p className="my-4 tracking-widest">
             <span className="bg-umenobe-lightblue px-3 py-1 rounded-sm mr-2">場所</span>
             {exhibitName}
           </p>
         )}
-        { exhibitName && (
+        {exhibitName && (
           <p className="my-4 tracking-widest">
             <span className="bg-umenobe-lightblue px-3 py-1 rounded-sm mr-2">時間</span>
             {exhibitName}
@@ -64,12 +64,10 @@ export const Exhibition = ({ imageData, textData }: Props) => {
           {exhibitInfo}
           ゲストの紹介ですゲストの紹介ですゲストの紹介ですゲストの紹介ですゲストの紹介ですゲストの紹介ですゲストの紹介ですゲストの紹介ですゲストの紹介ですゲストの紹介ですゲストの紹介ですゲストの紹介ですゲストの紹介です
         </p>
-        { exhibitName && (
+        {exhibitName && (
           <p className="my-4 tracking-widest">
             <span className="py-1 rounded-sm">HP：</span>
-            <a href="#">
-              {exhibitName}
-            </a>
+            <a href="#">{exhibitName}</a>
           </p>
         )}
       </div>

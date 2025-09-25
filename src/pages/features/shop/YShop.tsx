@@ -32,7 +32,10 @@ export const YShop = ({ imageData, textData }: Props) => {
       </div>
       {/* FIXME: margin 要調整 */}
       <p className="w-[125px] text-center mt-5 text-bold">{textData}</p>
-      <p>{textData}{textData}</p>
+      <p>
+        {textData}
+        {textData}
+      </p>
     </div>
   );
 };

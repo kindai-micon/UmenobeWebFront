@@ -48,13 +48,13 @@ export const Corp = ({ imageData, textData }: Props) => {
             {corpName}
           </h1>
         </div>
-        { corpName && (
+        {corpName && (
           <p className="my-4 tracking-widest">
             <span className="bg-umenobe-lightblue px-3 py-1 rounded-sm mr-2">場所</span>
             {corpName}
           </p>
         )}
-        { corpName && (
+        {corpName && (
           <p className="my-4 tracking-widest">
             <span className="bg-umenobe-lightblue px-3 py-1 rounded-sm mr-2">時間</span>
             {corpName}
@@ -64,18 +64,16 @@ export const Corp = ({ imageData, textData }: Props) => {
           {corpInfo}
           ゲストの紹介ですゲストの紹介ですゲストの紹介ですゲストの紹介ですゲストの紹介ですゲストの紹介ですゲストの紹介ですゲストの紹介ですゲストの紹介ですゲストの紹介ですゲストの紹介ですゲストの紹介ですゲストの紹介です
         </p>
-        { corpName && (
+        {corpName && (
           <p className="my-4 tracking-widest">
             <span className="py-1 rounded-sm">住所：</span>
             {corpName}
           </p>
         )}
-        { corpName && (
+        {corpName && (
           <p className="my-4 tracking-widest">
             <span className="py-1 rounded-sm">HP：</span>
-            <a href="#">
-              {corpName}
-            </a>
+            <a href="#">{corpName}</a>
           </p>
         )}
       </div>

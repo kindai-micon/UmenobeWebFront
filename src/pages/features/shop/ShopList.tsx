@@ -34,16 +34,16 @@ export const ShopList = ({ imageData, textData }: Props) => {
     <>
       <ul className="mb-8 flex justify-center gap-8">
         {shopList(imageData, textData).map((item) => (
-            <li key={item.name}>
-              <XShop imageData={item.filename} textData={item.text} />
-            </li>
+          <li key={item.name}>
+            <XShop imageData={item.filename} textData={item.text} />
+          </li>
         ))}
       </ul>
       <ul className="mb-8 flex justify-center gap-8">
         {shopList(imageData, textData).map((item) => (
-            <li key={item.name}>
-              <YShop imageData={item.filename} textData={item.text} />
-            </li>
+          <li key={item.name}>
+            <YShop imageData={item.filename} textData={item.text} />
+          </li>
         ))}
       </ul>
     </>

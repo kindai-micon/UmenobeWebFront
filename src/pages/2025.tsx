@@ -12,6 +12,7 @@ import ExhibitionPage from './features/exhibition';
 import CorporationPage from './features/corporation';
 import AccessPage from './features/access';
 import GuestPage from './features/guest';
+import FireworkPage from './features/firework';
 import { ImageItem, TextItem } from '../types/type';
 import { Footer } from './components/Footer';
 
@@ -47,6 +48,7 @@ function MainContent() {
       <ShopPage imageData={imageData} textData={textData} />
       <ExhibitionPage imageData={imageData} textData={textData} />
       <CorporationPage imageData={imageData} textData={textData} />
+      <FireworkPage />
       <AccessPage />
     </div>
   );

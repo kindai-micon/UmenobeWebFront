@@ -1,13 +1,23 @@
 import Image from "next/image";
+import { useEffect, useState } from "react";
+
+const imageData = "4e93b89ed6e5439e9ab712b340875ed4.png";
 
 export const Firework = () => {
+    const [fireworkImage, setFireworkImage] = useState<string>('');
+    useEffect(() => {
+        const url = (process.env.NEXT_PUBLIC_API_BASE_URL || '') + imageData;
+        setFireworkImage(url);
+    }, [imageData]);
+
+
   return (
     <div className="flex flex-col items-center pb-8">
-        <div className="flex justify-center py-8">
-            <div>
-                <Image src={"/images/firework.jpg"} alt="打ち上げ花火" width={600} height={400} className="rounded-md" />
+        <div className="flex justify-center gap-8 py-8">
+            <div className="w-1/2">
+                <Image src={fireworkImage} alt="打ち上げ花火" width={600} height={400} className="rounded-md" />
             </div>
-            <div className="text-center my-4">
+            <div className="flex flex-col items-center justify-center gap-8 text-center my-4">
                 <p className="text-2xl font-bold mb-2">キャッチコピーキャッチコピー</p>
                     
                     <div className="flex flex-col items-start gap-4">

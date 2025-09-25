@@ -1,4 +1,4 @@
-import { Heading } from '../../components/Heading';
+import { Heading } from '@/pages/components/Heading';
 import { TimeTable } from './TimeTable';
 
 // FIXME: 繋ぎこみ

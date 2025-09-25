@@ -1,5 +1,5 @@
 import { Corp } from './Corp';
-import { ImageItem, TextItem } from '../../../types/type';
+import { ImageItem, TextItem } from '@/types/type';
 
 type Props = {
   imageData: ImageItem[];

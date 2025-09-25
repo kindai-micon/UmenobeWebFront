@@ -2,7 +2,7 @@ import { XShop } from './XShop';
 import { YShop } from './YShop';
 import {
   ImageItem, TextItem, FileItem, MergedItem,
-} from '../../../types/type';
+} from '@/types/type';
 
 type Props = {
   imageData: ImageItem[];

@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
-import { ImageItem, TextItem } from '../../../types/type';
+import { ImageItem, TextItem } from '@/types/type';
 
 type Props = {
   imageData: ImageItem[];

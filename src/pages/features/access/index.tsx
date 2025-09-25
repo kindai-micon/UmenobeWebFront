@@ -1,4 +1,4 @@
-import { Heading } from '../../components/Heading';
+import { Heading } from '@/pages/components/Heading';
 
 export default function AccessPage() {
   return (

@@ -14,13 +14,13 @@ export const Firework = () => {
     <div className="flex flex-col items-center pb-8">
       <div className="flex justify-center gap-8 py-8">
         <div className="w-1/2">
-          <Image
+          {fireworkImage && <Image
             src={fireworkImage}
             alt="打ち上げ花火"
             width={600}
             height={400}
             className="rounded-md"
-          />
+          />}
         </div>
         <div className="flex flex-col items-center justify-center gap-8 text-center my-4">
           <p className="text-2xl font-bold mb-2">

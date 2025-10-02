@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { ImageItem, TextItem } from '@/types/type';
 
@@ -11,12 +10,54 @@ export const Exhibition = ({ imageData, textData }: Props) => {
   const [exhibitImage, setExhibitImage] = useState<string | null>();
   const [exhibitName, setExhibitName] = useState<string | null>(null);
   const [exhibitInfo, setExhibitInfo] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [imageError, setImageError] = useState<boolean>(false);
 
   useEffect(() => {
+    const fetchImageAsBlob = async (url: string) => {
+      setIsLoading(true);
+      setImageError(false);
+
+      try {
+        const res = await fetch(url);
+        if (!res.ok) {
+          throw new Error(`HTTP error! status: ${res.status}`);
+        }
+
+        const contentType = res.headers.get('content-type');
+        if (contentType && contentType.includes('application/json')) {
+          throw new Error('画像ではなくJSONが返されました');
+        }
+
+        const blob = await res.blob();
+
+        if (
+          exhibitImage
+          && typeof exhibitImage === 'string'
+          && exhibitImage.startsWith('blob:')
+        ) {
+          URL.revokeObjectURL(exhibitImage);
+        }
+
+        const objectURL = URL.createObjectURL(blob);
+        setExhibitImage(objectURL);
+        setImageError(false);
+      } catch (err) {
+        setImageError(true);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
     const img = imageData.find((item) => item.name === 'image2');
     if (img && img.filename) {
-      const url = (process.env.NEXT_PUBLIC_API_BASE_URL || '') + img.filename;
-      setExhibitImage(url);
+      const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
+      const url = API_BASE_URL
+        ? `${API_BASE_URL}${img.filename}`
+        : '/appare.jpg';
+      fetchImageAsBlob(url);
+    } else {
+      fetchImageAsBlob('/appare.jpg');
     }
     const name = textData.find((item) => item.name === 'CultureDepartment_0');
     if (name && name.text) {
@@ -32,7 +73,7 @@ export const Exhibition = ({ imageData, textData }: Props) => {
     <div className="w-4/5 sm:w-2/3 p-8 bg-white flex flex-col justify-center items-center gap-4 sm:gap-8 mb-8 rounded-md">
       <div className="flex justify-center items-center w-1/2">
         {exhibitImage && (
-          <Image
+          <img
             src={exhibitImage}
             alt="ゲスト画像"
             width={0}

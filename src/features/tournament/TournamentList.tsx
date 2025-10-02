@@ -1,7 +1,7 @@
 import { JointEvent } from './JointEvent';
 import { Tournament } from './Tournament';
 
-const imageData = '4e93b89ed6e5439e9ab712b340875ed4.png';
+const imageData = '4eb3e7f2afc74299b0d4568595c952b7.png';
 const textData = '大会情報の紹介文が入ります。大会情報の紹介文が入ります。大会情報の紹介文が入ります。';
 
 export const TournamentList = () => (

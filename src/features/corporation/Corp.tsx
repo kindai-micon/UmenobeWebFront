@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { ImageItem, TextItem } from '@/types/type';
 
@@ -14,10 +13,21 @@ export const Corp = ({ imageData, textData }: Props) => {
 
   useEffect(() => {
     const img = imageData.find((item) => item.name === 'image2');
-    if (img && img.filename) {
-      const url = (process.env.NEXT_PUBLIC_API_BASE_URL || '') + img.filename;
-      setCorpImage(url);
-    }
+    const loadImage = async () => {
+      if (img && img.filename) {
+        const url = (process.env.NEXT_PUBLIC_API_BASE_URL || '') + img.filename;
+        try {
+          const res = await fetch(url);
+          if (!res.ok) throw new Error('画像の取得に失敗しました');
+          const blob = await res.blob();
+          const objectURL = URL.createObjectURL(blob);
+          setCorpImage(objectURL);
+        } catch (err) {
+          // 失敗した場合は直接URLをセット（CDN直参照 fallback）
+          setCorpImage(url);
+        }
+      }
+    };
     const name = textData.find((item) => item.name === 'CultureDepartment_0');
     if (name && name.text) {
       setCorpName(name.text);
@@ -26,13 +36,14 @@ export const Corp = ({ imageData, textData }: Props) => {
     if (info && info.text) {
       setCorpInfo(info.text);
     }
+    loadImage();
   }, [imageData, textData]);
 
   return (
     <div className="bg-umenobe-yellow w-4/5 sm:w-2/3 p-8 flex flex-col justify-center items-center gap-4 sm:gap-8 mb-8 rounded-md">
       <div className="flex justify-center items-center w-1/2 border-8 border-white">
         {corpImage && (
-          <Image
+          <img
             src={corpImage}
             alt="ゲスト画像"
             width={0}

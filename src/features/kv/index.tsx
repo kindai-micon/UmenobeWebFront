@@ -1,10 +1,8 @@
-import Image from 'next/image';
-
 export default function KeyVisualPage() {
   return (
     <section className="bg-umenobe-yellow">
       {/* TODO: DB反映に変更 */}
-      <Image
+      <img
         src="/appare.jpg"
         alt="大学祭のテーマ画像です"
         width={0}

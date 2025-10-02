@@ -1,26 +1,87 @@
-import Image from 'next/image';
 import { useEffect, useState } from 'react';
 
-const imageData = '4e93b89ed6e5439e9ab712b340875ed4.png';
+const imageData = '4eb3e7f2afc74299b0d4568595c952b7.png';
 
 export const Firework = () => {
   const [fireworkImage, setFireworkImage] = useState<string>('');
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [imageError, setImageError] = useState<boolean>(false);
+
   useEffect(() => {
-    const url = (process.env.NEXT_PUBLIC_API_BASE_URL || '') + imageData;
-    setFireworkImage(url);
+    const loadImage = async () => {
+      const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
+
+      if (!API_BASE_URL) {
+        await fetchImageAsBlob('/appare.jpg');
+        return;
+      }
+
+      const url = `${API_BASE_URL}${imageData}`;
+      await fetchImageAsBlob(url);
+    };
+
+    const fetchImageAsBlob = async (url: string) => {
+      setIsLoading(true);
+      setImageError(false);
+
+      try {
+        const res = await fetch(url);
+        if (!res.ok) {
+          throw new Error(`HTTP error! status: ${res.status}`);
+        }
+
+        const contentType = res.headers.get('content-type');
+        if (contentType && contentType.includes('application/json')) {
+          throw new Error('画像ではなくJSONが返されました');
+        }
+
+        const blob = await res.blob();
+
+        if (fireworkImage && fireworkImage.startsWith('blob:')) {
+          URL.revokeObjectURL(fireworkImage);
+        }
+
+        const objectURL = URL.createObjectURL(blob);
+        setFireworkImage(objectURL);
+        setImageError(false);
+      } catch (err) {
+        setImageError(true);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    loadImage();
+
+    return () => {
+      if (fireworkImage && fireworkImage.startsWith('blob:')) {
+        URL.revokeObjectURL(fireworkImage);
+      }
+    };
   }, [imageData]);
 
   return (
     <div className="flex flex-col items-center pb-8">
       <div className="flex flex-col items-center justify-center gap-8 py-8">
         <div className="w-1/2">
-          {fireworkImage && <Image
-            src={fireworkImage}
-            alt="打ち上げ花火"
-            width={600}
-            height={400}
-            className="rounded-md"
-          />}
+          {isLoading ? (
+            <div className="w-full h-[400px] bg-gray-200 rounded-md flex items-center justify-center">
+              <span className="text-gray-500 text-sm">読み込み中...</span>
+            </div>
+          ) : fireworkImage ? (
+            <img
+              src={fireworkImage}
+              alt="打ち上げ花火"
+              className="w-full h-auto object-cover rounded-md"
+              onError={() => setImageError(true)}
+            />
+          ) : (
+            <div className="w-full h-[400px] bg-gray-200 rounded-md flex items-center justify-center">
+              <span className="text-gray-500 text-sm">
+                {imageError ? '画像の取得に失敗' : '画像がありません'}
+              </span>
+            </div>
+          )}
         </div>
         <div className="flex flex-col items-center justify-center gap-8 text-center my-4">
           <p className="text-lg sm:text-2xl font-bold mb-2">

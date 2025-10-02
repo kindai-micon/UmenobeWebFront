@@ -1,6 +1,5 @@
 'use client';
 
-import Image from 'next/image';
 import { useEffect, useState } from 'react';
 
 type Props = {
@@ -21,7 +20,7 @@ export const YShop = ({ imageData, textData }: Props) => {
     <div className="flex flex-col items-center">
       <div>
         {guestImage && (
-          <Image
+          <img
             src={guestImage}
             alt="ゲスト画像"
             width={200}

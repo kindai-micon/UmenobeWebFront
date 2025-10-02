@@ -43,6 +43,7 @@ export const Exhibition = ({ imageData, textData }: Props) => {
         setExhibitImage(objectURL);
         setImageError(false);
       } catch (err) {
+        console.error('画像の取得に失敗しました:', err);
         setImageError(true);
       } finally {
         setIsLoading(false);

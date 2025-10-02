@@ -45,6 +45,7 @@ export const Firework = () => {
         setFireworkImage(objectURL);
         setImageError(false);
       } catch (err) {
+        console.error('画像の取得に失敗しました:', err);
         setImageError(true);
       } finally {
         setIsLoading(false);

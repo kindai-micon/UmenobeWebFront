@@ -41,6 +41,7 @@ export const Guest = ({ imageData, textData }: Props) => {
         setGuestImage(objectURL);
         setImageError(false);
       } catch (err) {
+        console.error('画像の取得に失敗しました:', err);
         setImageError(true);
         // フォールバック画像をfetchして表示
         if (url !== '/appare.jpg') {

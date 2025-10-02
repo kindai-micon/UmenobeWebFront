@@ -23,6 +23,7 @@ export const Corp = ({ imageData, textData }: Props) => {
           const objectURL = URL.createObjectURL(blob);
           setCorpImage(objectURL);
         } catch (err) {
+          console.error(err);
           // 失敗した場合は直接URLをセット（CDN直参照 fallback）
           setCorpImage(url);
         }

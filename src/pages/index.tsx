@@ -35,7 +35,7 @@ function MainContent() {
         setImageData(imageData);
         setTextData(textData);
       } catch (error) {
-        // データの取得に失敗
+        console.error('データの取得に失敗しました:', error);
       }
     };
 

@@ -20,7 +20,7 @@ export const JointEvent = ({ imageData, textData }: Props) => {
   }, [imageData, textData]);
 
   return (
-    <div className="w-1/2 p-8 bg-white flex justify-center items-center gap-8 rounded-md">
+    <div className="w-4/5 sm:w-2/3 p-8 bg-white flex flex-col justify-center items-center gap-4 sm:gap-8 rounded-md">
       <div className="flex justify-center items-center w-1/2">
         {guestImage && (
           <Image
@@ -33,7 +33,7 @@ export const JointEvent = ({ imageData, textData }: Props) => {
           />
         )}
       </div>
-      <div className="w-1/2">
+      <div className="sm:w-1/2 w-4/5">
         <div className="py-2">
           <h1 className="border-b-4 border-dotted border-umenobe-lightblue inline text-2xl font-bold">
             {guestName}

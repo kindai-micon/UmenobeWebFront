@@ -12,7 +12,7 @@ export const Firework = () => {
 
   return (
     <div className="flex flex-col items-center pb-8">
-      <div className="flex justify-center gap-8 py-8">
+      <div className="flex flex-col items-center justify-center gap-8 py-8">
         <div className="w-1/2">
           {fireworkImage && <Image
             src={fireworkImage}
@@ -23,7 +23,7 @@ export const Firework = () => {
           />}
         </div>
         <div className="flex flex-col items-center justify-center gap-8 text-center my-4">
-          <p className="text-2xl font-bold mb-2">
+          <p className="text-lg sm:text-2xl font-bold mb-2">
             キャッチコピーキャッチコピー
           </p>
 
@@ -47,7 +47,7 @@ export const Firework = () => {
           </div>
         </div>
       </div>
-      <div className="w-1/2">
+      <div className="w-4/5 sm:w-1/2">
         <h2 className="text-2xl font-bold text-center py-8 tracking-widest font-dela-one text-umenobe-dark-blue">
           注意事項
         </h2>

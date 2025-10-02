@@ -127,17 +127,17 @@ export const TimeTable = ({
   }
 
   return (
-    <div className="mb-8 flex justify-center font-dela-one tracking-widest text-xl">
+    <div className="mb-8 flex justify-center font-dela-one tracking-widest text-lg sm:text-xl">
       <table className="text-center border-separate border-spacing-4">
         <thead>
           <tr>
-            <th className="stroke-text text-white bg-umenobe-orange px-6 py-3 border border-umenobe-gray">
+            <th className="stroke-text text-white bg-umenobe-orange px-2 py-1 sm:px-6 sm:py-3 border border-umenobe-gray">
               時間
             </th>
             {places.map((p) => (
               <th
                 key={p}
-                className="stroke-text text-white bg-umenobe-orange px-6 py-3 border border-umenobe-gray"
+                className="stroke-text text-white bg-umenobe-orange px-2 py-1 sm:px-6 sm:py-3 border border-umenobe-gray"
               >
                 {p}
               </th>

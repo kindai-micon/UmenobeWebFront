@@ -31,7 +31,7 @@ export const Guest = ({ imageData, textData }: Props) => {
   }, [imageData, textData]);
 
   return (
-    <div className="w-1/2 p-8 bg-umenobe-light-orange flex gap-8 mb-8 rounded-md">
+    <div className="w-4/5 sm:w-2/3 p-8 bg-umenobe-light-orange flex flex-col items-center gap-4 sm:gap-8 mb-8 rounded-md">
       <div className="flex justify-center items-center w-1/2">
         {guestImage && (
           <Image
@@ -44,7 +44,7 @@ export const Guest = ({ imageData, textData }: Props) => {
           />
         )}
       </div>
-      <div className="w-1/2">
+      <div className="w-4/5 sm:w-1/2">
         <div className="py-2">
           <h2 className="text-lg font-bold">今回のゲストは...</h2>
           <h1 className="text-2xl font-bold">{guestName}</h1>

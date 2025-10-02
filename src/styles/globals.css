@@ -5,6 +5,8 @@
   --color-umenobe-light-yellow:  #FFFFA8;
   --color-umenobe-dark-yellow:  #FFFF42;
   --color-umenobe-orange: #FCC511;
+  --color-umenobe-enpha-orange: #EE7800;
+  --color-umenobe-border-orange: #8E766D;
   --color-umenobe-light-orange: #FCCD40;
   --color-umenobe-lighten-orange: #FCDA72;
   --color-umenobe-gray: #939393;
@@ -13,7 +15,7 @@
   --color-umenobe-dark-blue: #1574A2;
   --color-umenobe-lightblue: #79EEFF;
   --color-umenobe-dark-lightblue: #0FE3FF;
-  --color-umenobe-red: #FC1111;
+  --color-umenobe-red: #EA5506;
 }
 
 .font-dela-one {
@@ -26,5 +28,9 @@
 
 .stroke-text {
   -webkit-text-stroke-width: 1px;
-  -webkit-text-stroke-color: #939393;
+  -webkit-text-stroke-color: #8E766D;
 }
+/* .stroke-text-title {
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: #FFFFFF;
+} */

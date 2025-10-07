@@ -62,9 +62,9 @@ export const Firework = () => {
   }, [imageData]);
 
   return (
-    <div className="flex flex-col items-center pb-8">
-      <div className="flex flex-col items-center justify-center gap-8 py-8">
-        <div className="w-1/2">
+    <div className="flex flex-col items-center pb-4 lg:pb-8">
+      <div className="flex flex-col items-center justify-center gap-4 lg:gap-8 lg:py-4">
+        <div className="w-2/3 lg:w-1/2">
           {isLoading ? (
             <div className="w-full h-[400px] bg-gray-200 rounded-md flex items-center justify-center">
               <span className="text-gray-500 text-sm">読み込み中...</span>
@@ -109,7 +109,7 @@ export const Firework = () => {
           </div>
         </div>
       </div>
-      <div className="w-4/5 sm:w-1/2">
+      <div className="w-2/3 lg:w-1/2 pb-4">
         <h2 className="text-2xl font-bold text-center py-8 tracking-widest font-dela-one text-umenobe-dark-blue">
           注意事項
         </h2>

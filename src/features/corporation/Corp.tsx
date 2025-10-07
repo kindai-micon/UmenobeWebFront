@@ -42,19 +42,16 @@ export const Corp = ({ imageData, textData }: Props) => {
 
   return (
     <div className="bg-umenobe-yellow w-4/5 sm:w-2/3 p-8 flex flex-col justify-center items-center gap-4 sm:gap-8 mb-8 rounded-md">
-      <div className="flex justify-center items-center w-1/2 border-8 border-white">
+      <div className="flex justify-center items-center border-8 border-white md:w-2/3">
         {corpImage && (
           <img
             src={corpImage}
             alt="ゲスト画像"
-            width={0}
-            height={0}
-            sizes="100%"
-            style={{ width: '100%', height: 'auto' }}
+            className="w-full h-auto object-cover rounded-md"
           />
         )}
       </div>
-      <div className="w-4/5 sm:w-1/2">
+      <div className="w-4/5 md:w-2/3">
         <div className="py-2">
           <h1 className="border-b-4 border-dotted border-umenobe-lightblue inline text-2xl font-bold">
             {corpName}

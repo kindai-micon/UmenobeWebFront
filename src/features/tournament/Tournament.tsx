@@ -105,8 +105,8 @@ export const Tournament = ({ imageData, textData }: Props) => {
           </div>
         )}
       </div>
-      <p className="w-[300px] text-center mt-1 text-bold">{textData}</p>
-      <p className="w-[300px] text-center mt-1 text-bold">{textData}</p>
+      <p className="w-[300px] text-center mt-1 text-lg font-bold">{textData}</p>
+      <p className="w-[300px] text-center mt-1">{textData}</p>
     </div>
   );
 };

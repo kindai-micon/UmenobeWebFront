@@ -15,9 +15,6 @@ export default function AccessPage() {
           referrerPolicy="no-referrer-when-downgrade"
         ></iframe>
       </div>
-      <div className="pb-8">
-        <Heading title="お車でお越しの方へ" />
-      </div>
     </section>
   );
 }

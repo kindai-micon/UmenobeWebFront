@@ -80,7 +80,7 @@ export const Guest = ({ imageData, textData }: Props) => {
 
   return (
     <div className="w-4/5 sm:w-2/3 p-8 bg-umenobe-light-orange flex flex-col items-center gap-4 sm:gap-8 mb-8 rounded-md">
-      <div className="flex justify-center items-center w-1/2">
+      <div className="flex justify-center items-center md:w-2/3">
         {isLoading ? (
           <div className="w-full h-32 bg-gray-200 rounded-md flex items-center justify-center">
             <span className="text-gray-500 text-sm">読み込み中...</span>
@@ -100,7 +100,7 @@ export const Guest = ({ imageData, textData }: Props) => {
           </div>
         )}
       </div>
-      <div className="w-4/5 sm:w-1/2">
+      <div className="w-4/5 md:w-2/3">
         <div className="py-2">
           <h2 className="text-lg font-bold">今回のゲストは...</h2>
           <h1 className="text-2xl font-bold">{guestName}</h1>

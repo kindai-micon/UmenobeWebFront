@@ -75,8 +75,8 @@ export const JointEvent = ({ imageData, textData }: Props) => {
   }, [imageData, textData]);
 
   return (
-    <div className="w-4/5 sm:w-2/3 p-8 bg-white flex flex-col justify-center items-center gap-4 sm:gap-8 rounded-md">
-      <div className="flex justify-center items-center w-1/2">
+    <div className="w-4/5 lg:w-1/2 p-4 sm:p-8 bg-white flex flex-col justify-center items-center gap-4 sm:gap-8 rounded-md">
+      <div className="flex justify-center items-center w-2/3 mt-4 sm:mt-0">
         {isLoading ? (
           <div className="w-full h-32 bg-gray-200 rounded-md flex items-center justify-center">
             <span className="text-gray-500 text-sm">読み込み中...</span>
@@ -96,7 +96,7 @@ export const JointEvent = ({ imageData, textData }: Props) => {
           </div>
         )}
       </div>
-      <div className="sm:w-1/2 w-4/5">
+      <div className='w-4/5'>
         <div className="py-2">
           <h1 className="border-b-4 border-dotted border-umenobe-lightblue inline text-2xl font-bold">
             {guestName}

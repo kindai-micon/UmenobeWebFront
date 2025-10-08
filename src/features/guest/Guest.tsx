@@ -14,69 +14,57 @@ export const Guest = ({ imageData, textData }: Props) => {
   const [guestInfo, setGuestInfo] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [imageError, setImageError] = useState<boolean>(false);
-
+  
   useEffect(() => {
-    const fetchImageAsBlob = async (url: string) => {
-      setIsLoading(true);
-      setImageError(false);
+    const loadImage = async () => {
+      const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
+      const guestImg = imageData.find(item => item.name === 'guest_image');
+      const url = `${API_BASE_URL}${guestImg?.filename}`;
+      setGuestName(textData.find(item => item.name === 'guest_name')?.text);
+      setGuestInfo(textData.find(item => item.name === 'guest_desc')?.text);
+        await fetchImageAsBlob(url);
+      };
+  
+      const fetchImageAsBlob = async (url: string) => {
+        setIsLoading(true);
+        setImageError(false);
+        try {
+          const res = await fetch(url);
+          if (!res.ok) {
+            throw new Error(`HTTP error! status: ${res.status}`);
+          }
+          // レスポンスがJSONかどうかをチェック
+          const contentType = res.headers.get('content-type');
+          if (contentType && contentType.includes('application/json')) {
+            throw new Error('画像ではなくJSONが返されました');
+          }
+          // 画像をblobとして取得
+          const blob = await res.blob();
+          // 既存のObjectURLがあればrevoke
+          if (guestImage && guestImage.startsWith('blob:')) {
+            URL.revokeObjectURL(guestImage);
+          }
+          // 新しいObjectURLを作成
+          const objectURL = URL.createObjectURL(blob);
+          setGuestImage(objectURL);
+          setImageError(false);
 
-      try {
-        const res = await fetch(url);
-        if (!res.ok) {
-          throw new Error(`HTTP error! status: ${res.status}`);
+        } catch (err) {
+          console.error('画像の取得に失敗しました:', err);
+          setImageError(true);
+        } finally {
+          setIsLoading(false);
         }
+      };
+      loadImage();
 
-        const contentType = res.headers.get('content-type');
-        if (contentType && contentType.includes('application/json')) {
-          throw new Error('画像ではなくJSONが返されました');
-        }
-
-        const blob = await res.blob();
-
+      // cleanup関数でObjectURLをrevoke
+      return () => {
         if (guestImage && guestImage.startsWith('blob:')) {
           URL.revokeObjectURL(guestImage);
         }
-
-        const objectURL = URL.createObjectURL(blob);
-        setGuestImage(objectURL);
-        setImageError(false);
-      } catch (err) {
-        console.error('画像の取得に失敗しました:', err);
-        setImageError(true);
-        // フォールバック画像をfetchして表示
-        if (url !== '/appare.jpg') {
-          await fetchImageAsBlob('/appare.jpg');
-        }
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    const img = imageData.find((item) => item.name === 'image2');
-    if (img && img.filename) {
-      const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
-      const url = API_BASE_URL
-        ? `${API_BASE_URL}${img.filename}`
-        : '/appare.jpg';
-      fetchImageAsBlob(url);
-    } else {
-      fetchImageAsBlob('/appare.jpg');
-    }
-    const name = textData.find((item) => item.name === 'CultureDepartment_0');
-    if (name && name.text) {
-      setGuestName(name.text);
-    }
-    const info = textData.find((item) => item.name === 'CultureDepartment_1');
-    if (info && info.text) {
-      setGuestInfo(info.text);
-    }
-
-    return () => {
-      if (guestImage && guestImage.startsWith('blob:')) {
-        URL.revokeObjectURL(guestImage);
-      }
-    };
-  }, [imageData, textData]);
+      };
+    }, [imageData]);
 
   return (
     <div className="w-4/5 sm:w-2/3 p-8 bg-umenobe-light-orange flex flex-col items-center gap-4 sm:gap-8 mb-8 rounded-md">
@@ -101,13 +89,12 @@ export const Guest = ({ imageData, textData }: Props) => {
         )}
       </div>
       <div className="w-4/5 md:w-2/3">
-        <div className="py-2">
+        <div className="lg:flex lg:items-end lg:gap-4 py-2">
           <h2 className="text-lg font-bold">今回のゲストは...</h2>
           <h1 className="text-2xl font-bold">{guestName}</h1>
         </div>
         <p>
           {guestInfo}
-          ゲストの紹介ですゲストの紹介ですゲストの紹介ですゲストの紹介ですゲストの紹介ですゲストの紹介ですゲストの紹介ですゲストの紹介ですゲストの紹介ですゲストの紹介ですゲストの紹介ですゲストの紹介ですゲストの紹介です
         </p>
       </div>
     </div>

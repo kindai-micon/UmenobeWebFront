@@ -14,7 +14,7 @@ export default function KeyVisualPage({imageData}: Props) {
       const loadImage = async () => {
         const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
         const themeImg = imageData.find(item => item.name === 'theme_image');
-        const url = `${API_BASE_URL}${themeImg.filename}`;
+        const url = `${API_BASE_URL}${themeImg?.filename}`;
         await fetchImageAsBlob(url);
       };
   

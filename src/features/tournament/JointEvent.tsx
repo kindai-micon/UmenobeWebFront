@@ -12,7 +12,9 @@ export const JointEvent = ({ imageData, textData }: Props) => {
   const [jointEventDesc, setJointEventDesc] = useState<string | null>(null);
   const [jointEventCatch, setJointEventCatch] = useState<string | null>(null);
   const [jointEventTime, setJointEventTime] = useState<string | null>(null);
-  const [jointEventLocation, setJointEventLocation] = useState<string | null>(null);
+  const [jointEventLocation, setJointEventLocation] = useState<string | null>(
+    null,
+  );
   const [jointEventWeb, setJointEventWeb] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [imageError, setImageError] = useState<boolean>(false);
@@ -108,7 +110,7 @@ export const JointEvent = ({ imageData, textData }: Props) => {
           </div>
         )}
       </div>
-      <div className='w-4/5'>
+      <div className="w-4/5">
         <div className="py-2">
           <h1 className="border-b-4 border-dotted border-umenobe-lightblue inline text-2xl font-bold">
             {jointEventName}
@@ -131,13 +133,9 @@ export const JointEvent = ({ imageData, textData }: Props) => {
           </p>
         )}
         {jointEventCatch && (
-          <p className="my-4 tracking-widest font-bold">
-            {jointEventCatch}
-          </p>
+          <p className="my-4 tracking-widest font-bold">{jointEventCatch}</p>
         )}
-        <p>
-          {jointEventDesc}
-        </p>
+        <p>{jointEventDesc}</p>
         {jointEventWeb && (
           <p className="my-4 tracking-widest">
             <span className="py-1 rounded-sm">HP：</span>

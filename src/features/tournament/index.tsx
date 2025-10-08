@@ -1,6 +1,6 @@
 import { Heading } from '@/components/Heading';
-import { TournamentList } from './TournamentList';
 import { ImageItem, TextItem } from '@/types/type';
+import { TournamentList } from './TournamentList';
 
 type Props = {
   imageData: ImageItem[];

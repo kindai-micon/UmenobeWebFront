@@ -1,6 +1,6 @@
 import { ExhibitItem, ImageItem, TextItem } from '@/types/type';
-import { Exhibition } from './Exhibition';
 import { useEffect, useState } from 'react';
+import { Exhibition } from './Exhibition';
 
 type Props = {
   imageData: ImageItem[];
@@ -9,9 +9,7 @@ type Props = {
 
 export function ExhibitionList({ imageData, textData }: Props) {
   // 各 filename ごとに { filename, images: ImageItem[], texts: TextItem[] } の配列を保持する
-  const [exhibitionList, setExhibitionList] = useState<
-    ExhibitItem[]
-  >([]);
+  const [exhibitionList, setExhibitionList] = useState<ExhibitItem[]>([]);
 
   const mergeByFilename = (images: ImageItem[], texts: TextItem[]) => {
     const exhibitionImages = images.filter((item) => item.name.startsWith('exhibition'));
@@ -23,7 +21,11 @@ export function ExhibitionList({ imageData, textData }: Props) {
     const groupKeyForName = (name: string | undefined | null, idx: number) => {
       if (typeof name === 'string') {
         const trimmed = name.trim();
-        if (trimmed.length > 0 && trimmed !== 'undefined' && trimmed !== 'null') {
+        if (
+          trimmed.length > 0
+          && trimmed !== 'undefined'
+          && trimmed !== 'null'
+        ) {
           // match first segment (exhibition) and trailing digits
           // examples:
           // - exhibition_1 => ['exhibition_1', 'exhibition', '1']
@@ -68,7 +70,11 @@ export function ExhibitionList({ imageData, textData }: Props) {
         <div className="text-gray-500">展示データがありません</div>
       ) : (
         exhibitionList.map((group) => (
-          <Exhibition key={group.name} imageData={group.images} textData={group.texts} />
+          <Exhibition
+            key={group.name}
+            imageData={group.images}
+            textData={group.texts}
+          />
         ))
       )}
     </div>

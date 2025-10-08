@@ -114,9 +114,7 @@ export const Exhibition = ({ imageData, textData }: Props) => {
             {exhibitTime}
           </p>
         )}
-        <p>
-          {exhibitDesc}
-        </p>
+        <p>{exhibitDesc}</p>
         {exhibitWeb && (
           <p className="my-4 tracking-widest">
             <span className="py-1 rounded-sm">HP：</span>

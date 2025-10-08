@@ -14,57 +14,56 @@ export const Guest = ({ imageData, textData }: Props) => {
   const [guestInfo, setGuestInfo] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [imageError, setImageError] = useState<boolean>(false);
-  
+
   useEffect(() => {
     const loadImage = async () => {
       const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
-      const guestImg = imageData.find(item => item.name === 'guest_image');
+      const guestImg = imageData.find((item) => item.name === 'guest_image');
       const url = `${API_BASE_URL}${guestImg?.filename}`;
-      setGuestName(textData.find(item => item.name === 'guest_name')?.text);
-      setGuestInfo(textData.find(item => item.name === 'guest_desc')?.text);
-        await fetchImageAsBlob(url);
-      };
-  
-      const fetchImageAsBlob = async (url: string) => {
-        setIsLoading(true);
-        setImageError(false);
-        try {
-          const res = await fetch(url);
-          if (!res.ok) {
-            throw new Error(`HTTP error! status: ${res.status}`);
-          }
-          // レスポンスがJSONかどうかをチェック
-          const contentType = res.headers.get('content-type');
-          if (contentType && contentType.includes('application/json')) {
-            throw new Error('画像ではなくJSONが返されました');
-          }
-          // 画像をblobとして取得
-          const blob = await res.blob();
-          // 既存のObjectURLがあればrevoke
-          if (guestImage && guestImage.startsWith('blob:')) {
-            URL.revokeObjectURL(guestImage);
-          }
-          // 新しいObjectURLを作成
-          const objectURL = URL.createObjectURL(blob);
-          setGuestImage(objectURL);
-          setImageError(false);
+      setGuestName(textData.find((item) => item.name === 'guest_name')?.text);
+      setGuestInfo(textData.find((item) => item.name === 'guest_desc')?.text);
+      await fetchImageAsBlob(url);
+    };
 
-        } catch (err) {
-          console.error('画像の取得に失敗しました:', err);
-          setImageError(true);
-        } finally {
-          setIsLoading(false);
+    const fetchImageAsBlob = async (url: string) => {
+      setIsLoading(true);
+      setImageError(false);
+      try {
+        const res = await fetch(url);
+        if (!res.ok) {
+          throw new Error(`HTTP error! status: ${res.status}`);
         }
-      };
-      loadImage();
-
-      // cleanup関数でObjectURLをrevoke
-      return () => {
+        // レスポンスがJSONかどうかをチェック
+        const contentType = res.headers.get('content-type');
+        if (contentType && contentType.includes('application/json')) {
+          throw new Error('画像ではなくJSONが返されました');
+        }
+        // 画像をblobとして取得
+        const blob = await res.blob();
+        // 既存のObjectURLがあればrevoke
         if (guestImage && guestImage.startsWith('blob:')) {
           URL.revokeObjectURL(guestImage);
         }
-      };
-    }, [imageData]);
+        // 新しいObjectURLを作成
+        const objectURL = URL.createObjectURL(blob);
+        setGuestImage(objectURL);
+        setImageError(false);
+      } catch (err) {
+        console.error('画像の取得に失敗しました:', err);
+        setImageError(true);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    loadImage();
+
+    // cleanup関数でObjectURLをrevoke
+    return () => {
+      if (guestImage && guestImage.startsWith('blob:')) {
+        URL.revokeObjectURL(guestImage);
+      }
+    };
+  }, [imageData]);
 
   return (
     <div className="w-4/5 sm:w-2/3 p-8 bg-umenobe-light-orange flex flex-col items-center gap-4 sm:gap-8 mb-8 rounded-md">
@@ -93,9 +92,7 @@ export const Guest = ({ imageData, textData }: Props) => {
           <h2 className="text-lg font-bold">今回のゲストは...</h2>
           <h1 className="text-2xl font-bold">{guestName}</h1>
         </div>
-        <p>
-          {guestInfo}
-        </p>
+        <p>{guestInfo}</p>
       </div>
     </div>
   );

@@ -17,7 +17,7 @@ export const Corp = ({ imageData, textData }: Props) => {
   const [corpTel, setCorpTel] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [imageError, setImageError] = useState<boolean>(false);
-  
+
   useEffect(() => {
     const fetchImageAsBlob = async (url: string) => {
       setIsLoading(true);
@@ -91,7 +91,6 @@ export const Corp = ({ imageData, textData }: Props) => {
     }
   }, [imageData, textData]);
 
-
   return (
     <div className="bg-umenobe-yellow w-4/5 sm:w-2/3 p-8 flex flex-col justify-center items-center gap-4 sm:gap-8 mb-8 rounded-md">
       <div className="flex justify-center items-center border-8 border-white md:w-2/3">
@@ -125,9 +124,7 @@ export const Corp = ({ imageData, textData }: Props) => {
             {corpTime}
           </p>
         )}
-        <p>
-          {corpDesc}
-        </p>
+        <p>{corpDesc}</p>
         {corpAddress && (
           <p className="my-4 tracking-widest">
             <span className="py-1 rounded-sm">住所：</span>

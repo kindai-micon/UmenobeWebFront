@@ -90,7 +90,9 @@ export const Tournament = ({ imageData, textData }: Props) => {
           </div>
         )}
       </div>
-      <p className="w-[300px] text-center mt-1 text-lg font-bold">{eventName}</p>
+      <p className="w-[300px] text-center mt-1 text-lg font-bold">
+        {eventName}
+      </p>
       <p className="w-[300px] text-center mt-1">{eventDesc}</p>
     </div>
   );

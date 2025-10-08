@@ -82,9 +82,7 @@ export const XShop = ({ imageData, textData }: Props) => {
         )}
       </div>
       <p className="w-[200px] text-center mt-1 font-bold">{shopName}</p>
-      <p>
-        {shopMenu}
-      </p>
+      <p>{shopMenu}</p>
     </div>
   );
 };

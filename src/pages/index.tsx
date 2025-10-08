@@ -44,7 +44,7 @@ function MainContent() {
 
   return (
     <div>
-      <KeyVisualPage />
+      <KeyVisualPage imageData={imageData} />
       <EventInfoPage />
       <TimeTablePage />
       <GuestPage imageData={imageData} textData={textData} />

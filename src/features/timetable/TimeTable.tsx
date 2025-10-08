@@ -1,5 +1,13 @@
 // components/TimetableGrid.tsx
-type RawItem = { name: string; text?: string };
+// TimeTable accepts flexible input items. Use a local type to allow either
+// legacy { name, text } entries or structured { time, title, location } entries.
+type DataItem = {
+  name?: string;
+  text?: string;
+  time?: string; // 'HH:MM' or 'HH:MM-HH:MM'
+  title?: string;
+  location?: string; // '野外ステージ' | '多目的ホール' (or other)
+};
 
 type Place = '野外ステージ' | '多目的ホール';
 
@@ -27,7 +35,7 @@ function toMinutes(hhmm: string): number {
 // 空白区切りでもOK: "10:25-11:15 野外ステージ"
 function parseName(
   name: string,
-): { start: number; end: number; place: Place } | null {
+): { start: number; end: number; place?: Place } | null {
   const re = /^(\d{1,2}:\d{2})(?:\s*[-–]\s*(\d{1,2}:\d{2}))?(?:\s*(?:@|\s+)\s*(野外ステージ|多目的ホール))?$/;
   const m = name.trim().match(re);
   if (!m) return null;
@@ -35,7 +43,7 @@ function parseName(
   const [, s, e, p] = m;
   const start = toMinutes(s);
   const end = e ? toMinutes(e) : start + DEFAULT_DURATION;
-  const place = (p as Place) ?? '野外ステージ'; // 場所が無い場合は仮で野外ステージに入れる
+  const place = p ? (p as Place) : undefined; // 場所が無い場合は undefined を返す
 
   return { start, end, place };
 }
@@ -49,20 +57,34 @@ function floorToSlot(mins: number): number {
   return mins - r;
 }
 
-function normalize(items: RawItem[]): Event[] {
+function normalize(items: DataItem[]): Event[] {
   return items
     .map((it) => {
-      const parsed = parseName(it.name);
+      // name may be like '10:00@多目的ホール' or time field may be provided separately
+      const rawName = it.name ?? it.time ?? it.text ?? '';
+      // Try parse from rawName first. If parsed lacks place, and explicit location exists, try to incorporate it.
+      let parsed = parseName(String(rawName));
+      if ((!parsed || !parsed.place) && it.time) {
+        // try combining time and explicit location, e.g. '10:00@多目的ホール'
+        const combined = `${it.time}${it.location ? ` @${it.location}` : ''}`;
+        parsed = parseName(combined) || parsed;
+      }
+      // If parse found times but no place, prefer explicit it.location if it matches expected places
+      if (parsed && (!parsed.place || parsed.place === undefined) && it.location) {
+        const loc = it.location as Place;
+        if (loc === '野外ステージ' || loc === '多目的ホール') parsed.place = loc;
+      }
       if (!parsed) return null;
       const start = floorToSlot(parsed.start);
       const end = Math.max(ceilToSlot(parsed.end), start + SLOT_MIN); // 最低1スロット
+      const label = (it.title || it.text || it.name) as string | undefined;
       return {
         place: parsed.place,
         startMin: start, // スロット用（例: 10:30）
         endMin: end, // スロット用（例: 11:00）
         actualStartMin: parsed.start, // 実際の時間（例: 10:35）
         actualEndMin: parsed.end, // 実際の時間（例: 10:55）
-        label: it.text?.trim() || it.name,
+        label: label?.trim() || String(rawName),
       } as Event;
     })
     .filter(Boolean) as Event[];
@@ -80,7 +102,7 @@ function fmt(mins: number): string {
   return `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}`;
 }
 
-type Props = { data: RawItem[]; places?: Place[] }; // 列として出したい場所配列（省略時は ["野外ステージ","多目的ホール"]）
+type Props = { data: DataItem[]; places?: Place[] }; // 列として出したい場所配列（省略時は ["野外ステージ","多目的ホール"]）
 
 export const TimeTable = ({
   data,

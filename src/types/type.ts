@@ -23,3 +23,9 @@ export type JointEventItem = {
   images: ImageItem[];
   texts: TextItem[];
 };
+
+export type TimeTableItem = {
+  time: string;
+  title: string;
+  location: string;
+};

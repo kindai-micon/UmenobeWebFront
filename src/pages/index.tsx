@@ -46,7 +46,7 @@ function MainContent() {
     <div>
       <KeyVisualPage imageData={imageData} />
       <EventInfoPage />
-      <TimeTablePage />
+      <TimeTablePage textData={textData} />
       <GuestPage imageData={imageData} textData={textData} />
       <TournamentPage imageData={imageData} textData={textData} />
       <ShopPage imageData={imageData} textData={textData} />

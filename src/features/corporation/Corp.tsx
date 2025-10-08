@@ -140,7 +140,7 @@ export const Corp = ({ imageData, textData }: Props) => {
         {corpWeb && (
           <p className="my-4 tracking-widest">
             <span className="py-1 rounded-sm">HP：</span>
-            <a href="#">{corpWeb}</a>
+            <a href={corpWeb}>{corpWeb}</a>
           </p>
         )}
       </div>

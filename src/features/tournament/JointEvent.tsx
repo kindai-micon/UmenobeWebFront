@@ -139,7 +139,7 @@ export const JointEvent = ({ imageData, textData }: Props) => {
         {jointEventWeb && (
           <p className="my-4 tracking-widest">
             <span className="py-1 rounded-sm">HP：</span>
-            <a href="#">{jointEventWeb}</a>
+            <a href={jointEventWeb}>{jointEventWeb}</a>
           </p>
         )}
       </div>

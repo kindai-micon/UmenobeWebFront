@@ -1,22 +1,45 @@
 import { Heading } from '@/components/Heading';
+import { TextItem } from '@/types/type';
+import { useEffect, useState } from 'react';
 import { TimeTable } from './TimeTable';
 
-// FIXME: 繋ぎこみ
-const data = [
-  { name: '10:00-10:30@野外ステージ', text: '受付' },
-  { name: '10:35-10:55@野外ステージ', text: '基調講演' },
-  { name: '10:40-12:30@多目的ホール', text: 'ワークショップ' },
-  { name: '11:25-11:50@野外ステージ', text: 'デモ' },
-  { name: '12:00-20:30@野外ステージ', text: 'Q&A' },
-  { name: '10:00@多目的ホール', text: 'オープン' },
-  { name: '12:40@多目的ホール', text: 'オープン' },
-];
+type Props = {
+  textData: TextItem[];
+};
 
-export default function TimeTablePage() {
+export default function TimeTablePage({ textData }: Props) {
+  const [timetable, setTimeTable] = useState<
+    { time?: string; title?: string; location?: string }[]
+  >([]);
+
+  useEffect(() => {
+    const data = textData.filter((item) => item.name.startsWith('schedule'));
+
+    // グループを作成: schedule_<type>_<num> 形式を解析して、num ごとに type をキーに格納する
+    const groups: Record<string, Record<string, string>> = {};
+    for (const item of data) {
+      const m = item.name.match(/^schedule_([a-zA-Z0-9]+)_(\d+)$/);
+      if (!m) continue;
+      const [, type, num] = m;
+      if (!groups[num]) groups[num] = {};
+      groups[num][type] = item.text;
+    }
+
+    // 結果を配列化（id は生成せず、time/title/location のみを含む配列にする）
+    const nums = Object.keys(groups).sort((a, b) => Number(a) - Number(b));
+    const result = nums.map((n) => ({
+      time: groups[n].time,
+      title: groups[n].title,
+      location: groups[n].location,
+    }));
+    console.log('timetable grouped (no id):', result);
+    setTimeTable(result);
+  }, [textData]);
+
   return (
     <section className="bg-umenobe-yellow pb-8" id="timetable">
       <Heading title="タイムテーブル" />
-      <TimeTable data={data} />
+      <TimeTable data={timetable} />
     </section>
   );
 }

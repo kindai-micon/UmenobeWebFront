@@ -13,7 +13,6 @@ export default function TimeTablePage({ textData }: Props) {
   >([]);
 
   useEffect(() => {
-    console.log(textData);
     const data = textData.filter((item) => item.name.startsWith('schedule'));
 
     // グループを作成: schedule_<type>_<num> 形式を解析して、num ごとに type をキーに格納する

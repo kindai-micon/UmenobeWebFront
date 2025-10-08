@@ -1,65 +1,72 @@
+import { ImageItem, TextItem } from '@/types/type';
 import { useEffect, useState } from 'react';
 
-const imageData = '4eb3e7f2afc74299b0d4568595c952b7.png';
+type Props = {
+  imageData: ImageItem[];
+  textData: TextItem[];
+};
 
-export const Firework = () => {
+export const Firework = ({imageData, textData}: Props) => {
   const [fireworkImage, setFireworkImage] = useState<string>('');
+  const [fireworkDesc, setFireworkDesc] = useState<string>('');
+  const [fireworkLocation, setFireworkLocation] = useState<string>('');
+  const [fireworkTime, setFireworkTime] = useState<string>('');
+  const [fireworkNotice, setFireworkNotice] = useState<string>('');
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [imageError, setImageError] = useState<boolean>(false);
 
   useEffect(() => {
     const loadImage = async () => {
       const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
+      const fireworkImg = imageData.find(item => item.name === 'firework_image');
+      const url = `${API_BASE_URL}${fireworkImg?.filename}`;
+      setFireworkDesc(textData.find(item => item.name === 'firework_desc')?.text);
+      setFireworkLocation(textData.find(item => item.name === 'firework_location')?.text);
+      setFireworkTime(textData.find(item => item.name === 'firework_time')?.text);
+      setFireworkNotice(textData.find(item => item.name === 'firework_notice')?.text);
+        await fetchImageAsBlob(url);
+      };
+  
+      const fetchImageAsBlob = async (url: string) => {
+        setIsLoading(true);
+        setImageError(false);
+        try {
+          const res = await fetch(url);
+          if (!res.ok) {
+            throw new Error(`HTTP error! status: ${res.status}`);
+          }
+          // レスポンスがJSONかどうかをチェック
+          const contentType = res.headers.get('content-type');
+          if (contentType && contentType.includes('application/json')) {
+            throw new Error('画像ではなくJSONが返されました');
+          }
+          // 画像をblobとして取得
+          const blob = await res.blob();
+          // 既存のObjectURLがあればrevoke
+          if (fireworkImage && fireworkImage.startsWith('blob:')) {
+            URL.revokeObjectURL(fireworkImage);
+          }
+          // 新しいObjectURLを作成
+          const objectURL = URL.createObjectURL(blob);
+          setFireworkImage(objectURL);
+          setImageError(false);
 
-      if (!API_BASE_URL) {
-        await fetchImageAsBlob('/appare.jpg');
-        return;
-      }
-
-      const url = `${API_BASE_URL}${imageData}`;
-      await fetchImageAsBlob(url);
-    };
-
-    const fetchImageAsBlob = async (url: string) => {
-      setIsLoading(true);
-      setImageError(false);
-
-      try {
-        const res = await fetch(url);
-        if (!res.ok) {
-          throw new Error(`HTTP error! status: ${res.status}`);
+        } catch (err) {
+          console.error('画像の取得に失敗しました:', err);
+          setImageError(true);
+        } finally {
+          setIsLoading(false);
         }
+      };
+      loadImage();
 
-        const contentType = res.headers.get('content-type');
-        if (contentType && contentType.includes('application/json')) {
-          throw new Error('画像ではなくJSONが返されました');
-        }
-
-        const blob = await res.blob();
-
+      // cleanup関数でObjectURLをrevoke
+      return () => {
         if (fireworkImage && fireworkImage.startsWith('blob:')) {
           URL.revokeObjectURL(fireworkImage);
         }
-
-        const objectURL = URL.createObjectURL(blob);
-        setFireworkImage(objectURL);
-        setImageError(false);
-      } catch (err) {
-        console.error('画像の取得に失敗しました:', err);
-        setImageError(true);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    loadImage();
-
-    return () => {
-      if (fireworkImage && fireworkImage.startsWith('blob:')) {
-        URL.revokeObjectURL(fireworkImage);
-      }
-    };
-  }, [imageData]);
+      };
+    }, [imageData]);
 
   return (
     <div className="flex flex-col items-center pb-4 lg:pb-8">
@@ -85,27 +92,30 @@ export const Firework = () => {
           )}
         </div>
         <div className="flex flex-col items-center justify-center gap-8 text-center my-4">
-          <p className="text-lg sm:text-2xl font-bold mb-2">
-            キャッチコピーキャッチコピー
-          </p>
-
+          {
+            fireworkDesc && (
+              <p className="text-lg sm:text-2xl font-bold mb-2">
+                {fireworkDesc}
+              </p>
+            )
+          }
           <div className="flex flex-col items-start gap-4">
-            {/* {exhibitName && ( */}
+            {fireworkLocation && (
             <p className="tracking-widest">
               <span className="bg-umenobe-lightblue px-3 py-1 rounded-sm mr-2">
                 観覧場所
               </span>
-              第3駐車場
+              {fireworkLocation}
             </p>
-            {/* )} */}
-            {/* {exhibitName && ( */}
+            )}
+            {fireworkTime && (
             <p className="tracking-widest">
               <span className="bg-umenobe-lightblue px-3 py-1 rounded-sm mr-2">
                 開始時刻
               </span>
-              19:00~
+              {fireworkTime}
             </p>
-            {/* )} */}
+            )}
           </div>
         </div>
       </div>
@@ -114,11 +124,7 @@ export const Firework = () => {
           注意事項
         </h2>
         <p>
-          説明です説明です説明です説明です説明です説明です説明です説明です説明です説明です
-          説明です説明です説明です説明です説明です説明です説明です説明です説明です説明です説明です
-          説明です説明です説明です説明です説明です説明です説明です説明です説明です説明です
-          説明です説明です説明です説明です説明です説明です説明です説明です説明です説明です説明です
-          説明です説明です説明です説明です説明です説明です説明です説明です説明です説明です説明です
+          {fireworkNotice}
         </p>
       </div>
     </div>

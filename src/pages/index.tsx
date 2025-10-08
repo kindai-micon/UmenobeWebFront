@@ -52,7 +52,7 @@ function MainContent() {
       <ShopPage imageData={imageData} textData={textData} />
       <ExhibitionPage imageData={imageData} textData={textData} />
       <CorporationPage imageData={imageData} textData={textData} />
-      <FireworkPage />
+      <FireworkPage imageData={imageData} textData={textData} />
       <AccessPage />
     </div>
   );

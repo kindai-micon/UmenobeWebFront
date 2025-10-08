@@ -44,15 +44,15 @@ function MainContent() {
 
   return (
     <div>
-      <KeyVisualPage />
+      <KeyVisualPage imageData={imageData} />
       <EventInfoPage />
-      <TimeTablePage />
+      <TimeTablePage textData={textData} />
       <GuestPage imageData={imageData} textData={textData} />
-      <TournamentPage />
+      <TournamentPage imageData={imageData} textData={textData} />
       <ShopPage imageData={imageData} textData={textData} />
       <ExhibitionPage imageData={imageData} textData={textData} />
       <CorporationPage imageData={imageData} textData={textData} />
-      <FireworkPage />
+      <FireworkPage imageData={imageData} textData={textData} />
       <AccessPage />
     </div>
   );

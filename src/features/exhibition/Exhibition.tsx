@@ -9,7 +9,10 @@ type Props = {
 export const Exhibition = ({ imageData, textData }: Props) => {
   const [exhibitImage, setExhibitImage] = useState<string | null>();
   const [exhibitName, setExhibitName] = useState<string | null>(null);
-  const [exhibitInfo, setExhibitInfo] = useState<string | null>(null);
+  const [exhibitDesc, setExhibitDesc] = useState<string | null>(null);
+  const [exhibitTime, setExhibitTime] = useState<string | null>(null);
+  const [exhibitLocation, setExhibitLocation] = useState<string | null>(null);
+  const [exhibitWeb, setExhibitWeb] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [imageError, setImageError] = useState<boolean>(false);
 
@@ -50,70 +53,72 @@ export const Exhibition = ({ imageData, textData }: Props) => {
       }
     };
 
-    const img = imageData.find((item) => item.name === 'image2');
-    if (img && img.filename) {
+    const exhibitImg = imageData[0] || null;
+    if (exhibitImg) {
       const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
-      const url = API_BASE_URL
-        ? `${API_BASE_URL}${img.filename}`
-        : '/appare.jpg';
+      const url = `${API_BASE_URL}${exhibitImg.filename}`;
       fetchImageAsBlob(url);
-    } else {
-      fetchImageAsBlob('/appare.jpg');
     }
-    const name = textData.find((item) => item.name === 'CultureDepartment_0');
+    const name = textData.find((item) => item.name.startsWith('exhibition_name'));
     if (name && name.text) {
       setExhibitName(name.text);
     }
-    const info = textData.find((item) => item.name === 'CultureDepartment_1');
-    if (info && info.text) {
-      setExhibitInfo(info.text);
+    const desc = textData.find((item) => item.name.startsWith('exhibition_desc'));
+    if (desc && desc.text) {
+      setExhibitDesc(desc.text);
+    }
+    const time = textData.find((item) => item.name.startsWith('exhibition_time'));
+    if (time && time.text) {
+      setExhibitTime(time.text);
+    }
+    const location = textData.find((item) => item.name.startsWith('exhibition_location'));
+    if (location && location.text) {
+      setExhibitLocation(location.text);
+    }
+    const web = textData.find((item) => item.name.startsWith('exhibition_website'));
+    if (web && web.text) {
+      setExhibitWeb(web.text);
     }
   }, [imageData, textData]);
 
   return (
     <div className="w-4/5 sm:w-2/3 p-8 bg-white flex flex-col justify-center items-center gap-4 sm:gap-8 mb-8 rounded-md">
-      <div className="flex justify-center items-center w-1/2">
+      <div className="flex justify-center items-center md:w-2/3">
         {exhibitImage && (
           <img
             src={exhibitImage}
-            alt="ゲスト画像"
-            width={0}
-            height={0}
-            sizes="100%"
-            style={{ width: '100%', height: 'auto' }}
+            alt="展示画像"
+            className="w-full h-auto object-cover rounded-md"
           />
         )}
       </div>
-      <div className="w-4/5 sm:w-1/2">
+      <div className="w-4/5 sm:w-2/3">
         <div className="py-2">
           <h1 className="border-b-4 border-dotted border-umenobe-lightblue inline text-2xl font-bold">
             {exhibitName}
           </h1>
         </div>
-        {exhibitName && (
+        {exhibitLocation && (
           <p className="my-4 tracking-widest">
             <span className="bg-umenobe-lightblue px-3 py-1 rounded-sm mr-2">
               場所
             </span>
-            {exhibitName}
+            {exhibitLocation}
           </p>
         )}
-        {exhibitName && (
+        {exhibitTime && (
           <p className="my-4 tracking-widest">
             <span className="bg-umenobe-lightblue px-3 py-1 rounded-sm mr-2">
               時間
             </span>
-            {exhibitName}
+            {exhibitTime}
           </p>
         )}
-        <p>
-          {exhibitInfo}
-          ゲストの紹介ですゲストの紹介ですゲストの紹介ですゲストの紹介ですゲストの紹介ですゲストの紹介ですゲストの紹介ですゲストの紹介ですゲストの紹介ですゲストの紹介ですゲストの紹介ですゲストの紹介ですゲストの紹介です
-        </p>
-        {exhibitName && (
+        <p>{exhibitDesc}</p>
+        {exhibitWeb && (
           <p className="my-4 tracking-widest">
             <span className="py-1 rounded-sm">HP：</span>
-            <a href="#">{exhibitName}</a>
+            <a href={exhibitWeb}>{exhibitWeb}</a>
           </p>
         )}
       </div>

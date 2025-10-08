@@ -70,7 +70,11 @@ function normalize(items: DataItem[]): Event[] {
         parsed = parseName(combined) || parsed;
       }
       // If parse found times but no place, prefer explicit it.location if it matches expected places
-      if (parsed && (!parsed.place || parsed.place === undefined) && it.location) {
+      if (
+        parsed
+        && (!parsed.place || parsed.place === undefined)
+        && it.location
+      ) {
         const loc = it.location as Place;
         if (loc === '野外ステージ' || loc === '多目的ホール') parsed.place = loc;
       }

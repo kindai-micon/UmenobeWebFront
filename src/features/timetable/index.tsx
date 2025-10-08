@@ -1,14 +1,16 @@
 import { Heading } from '@/components/Heading';
-import { TimeTable } from './TimeTable';
 import { TextItem } from '@/types/type';
 import { useEffect, useState } from 'react';
+import { TimeTable } from './TimeTable';
 
 type Props = {
   textData: TextItem[];
-}
+};
 
-export default function TimeTablePage({textData}: Props) {
-  const [timetable, setTimeTable] = useState<{ time?: string; title?: string; location?: string }[]>([]);
+export default function TimeTablePage({ textData }: Props) {
+  const [timetable, setTimeTable] = useState<
+    { time?: string; title?: string; location?: string }[]
+  >([]);
 
   useEffect(() => {
     console.log(textData);
@@ -34,7 +36,6 @@ export default function TimeTablePage({textData}: Props) {
     console.log('timetable grouped (no id):', result);
     setTimeTable(result);
   }, [textData]);
-
 
   return (
     <section className="bg-umenobe-yellow pb-8" id="timetable">

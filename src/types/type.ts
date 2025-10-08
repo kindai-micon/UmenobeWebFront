@@ -5,10 +5,10 @@ export type TextItem = { [key: string]: string };
 export type ExhibitItem = { name: string; images: ImageItem[]; texts: TextItem[] };
 
 export type CorpItem = { name: string; images: ImageItem[]; texts: TextItem[] };
+
 export type ShopItem = { name: string; images: ImageItem[]; texts: TextItem[] };
 
-export type FileItem = { name: string; filename: string };
+export type EventItem = { name: string; images: ImageItem[]; texts: TextItem[] };
 
-export type MergedItem = { name: string; filename: string; text: string };
+export type JointEventItem = { name: string; images: ImageItem[]; texts: TextItem[] };
 
-export type ShopItema = { imageData: string; textData: string };

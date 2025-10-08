@@ -1,34 +1,23 @@
+import { ImageItem, TextItem } from '@/types/type';
 import { useEffect, useState } from 'react';
 
 type Props = {
-  imageData: string;
-  textData: string;
+  imageData: ImageItem[];
+  textData: TextItem[];
 };
 
 export const JointEvent = ({ imageData, textData }: Props) => {
-  const [guestImage, setGuestImage] = useState<string>('');
-  const [guestName, setGuestName] = useState<string>('');
+  const [jointEventImage, setJointEventImage] = useState<string | null>();
+  const [jointEventName, setJointEventName] = useState<string | null>(null);
+  const [jointEventDesc, setJointEventDesc] = useState<string | null>(null);
+  const [jointEventCatch, setJointEventCatch] = useState<string | null>(null);
+  const [jointEventTime, setJointEventTime] = useState<string | null>(null);
+  const [jointEventLocation, setJointEventLocation] = useState<string | null>(null);
+  const [jointEventWeb, setJointEventWeb] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [imageError, setImageError] = useState<boolean>(false);
 
   useEffect(() => {
-    const loadImage = async () => {
-      if (!imageData) {
-        await fetchImageAsBlob('/appare.jpg');
-        return;
-      }
-
-      const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
-
-      if (!API_BASE_URL) {
-        await fetchImageAsBlob('/appare.jpg');
-        return;
-      }
-
-      const url = `${API_BASE_URL}${imageData}`;
-      await fetchImageAsBlob(url);
-    };
-
     const fetchImageAsBlob = async (url: string) => {
       setIsLoading(true);
       setImageError(false);
@@ -46,12 +35,16 @@ export const JointEvent = ({ imageData, textData }: Props) => {
 
         const blob = await res.blob();
 
-        if (guestImage && guestImage.startsWith('blob:')) {
-          URL.revokeObjectURL(guestImage);
+        if (
+          jointEventImage
+          && typeof jointEventImage === 'string'
+          && jointEventImage.startsWith('blob:')
+        ) {
+          URL.revokeObjectURL(jointEventImage);
         }
 
         const objectURL = URL.createObjectURL(blob);
-        setGuestImage(objectURL);
+        setJointEventImage(objectURL);
         setImageError(false);
       } catch (err) {
         console.error('画像の取得に失敗しました:', err);
@@ -61,17 +54,36 @@ export const JointEvent = ({ imageData, textData }: Props) => {
       }
     };
 
-    if (textData) {
-      setGuestName(textData);
+    const jointEventImg = imageData[0] || null;
+    if (jointEventImg) {
+      const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
+      const url = `${API_BASE_URL}${jointEventImg.filename}`;
+      fetchImageAsBlob(url);
     }
-
-    loadImage();
-
-    return () => {
-      if (guestImage && guestImage.startsWith('blob:')) {
-        URL.revokeObjectURL(guestImage);
-      }
-    };
+    const name = textData.find((item) => item.name.startsWith('joint_event_name'));
+    if (name && name.text) {
+      setJointEventName(name.text);
+    }
+    const desc = textData.find((item) => item.name.startsWith('joint_event_desc'));
+    if (desc && desc.text) {
+      setJointEventDesc(desc.text);
+    }
+    const copy = textData.find((item) => item.name.startsWith('joint_event_catch'));
+    if (copy && copy.text) {
+      setJointEventCatch(copy.text);
+    }
+    const time = textData.find((item) => item.name.startsWith('joint_event_time'));
+    if (time && time.text) {
+      setJointEventTime(time.text);
+    }
+    const location = textData.find((item) => item.name.startsWith('joint_event_location'));
+    if (location && location.text) {
+      setJointEventLocation(location.text);
+    }
+    const web = textData.find((item) => item.name.startsWith('joint_event_website'));
+    if (web && web.text) {
+      setJointEventWeb(web.text);
+    }
   }, [imageData, textData]);
 
   return (
@@ -81,9 +93,9 @@ export const JointEvent = ({ imageData, textData }: Props) => {
           <div className="w-full h-32 bg-gray-200 rounded-md flex items-center justify-center">
             <span className="text-gray-500 text-sm">読み込み中...</span>
           </div>
-        ) : guestImage ? (
+        ) : jointEventImage ? (
           <img
-            src={guestImage}
+            src={jointEventImage}
             alt="ゲスト画像"
             className="w-full h-auto object-cover rounded-md"
             onError={() => setImageError(true)}
@@ -99,33 +111,37 @@ export const JointEvent = ({ imageData, textData }: Props) => {
       <div className='w-4/5'>
         <div className="py-2">
           <h1 className="border-b-4 border-dotted border-umenobe-lightblue inline text-2xl font-bold">
-            {guestName}
+            {jointEventName}
           </h1>
         </div>
-        {guestName && (
+        {jointEventLocation && (
           <p className="my-4 tracking-widest">
             <span className="bg-umenobe-lightblue px-3 py-1 rounded-sm mr-2">
               場所
             </span>
-            {guestName}
+            {jointEventLocation}
           </p>
         )}
-        {guestName && (
+        {jointEventTime && (
           <p className="my-4 tracking-widest">
             <span className="bg-umenobe-lightblue px-3 py-1 rounded-sm mr-2">
               時間
             </span>
-            {guestName}
+            {jointEventTime}
+          </p>
+        )}
+        {jointEventCatch && (
+          <p className="my-4 tracking-widest font-bold">
+            {jointEventCatch}
           </p>
         )}
         <p>
-          {guestName}
-          ゲストの紹介ですゲストの紹介ですゲストの紹介ですゲストの紹介ですゲストの紹介ですゲストの紹介ですゲストの紹介ですゲストの紹介ですゲストの紹介ですゲストの紹介ですゲストの紹介ですゲストの紹介ですゲストの紹介です
+          {jointEventDesc}
         </p>
-        {guestName && (
+        {jointEventWeb && (
           <p className="my-4 tracking-widest">
             <span className="py-1 rounded-sm">HP：</span>
-            <a href="#">{guestName}</a>
+            <a href="#">{jointEventWeb}</a>
           </p>
         )}
       </div>

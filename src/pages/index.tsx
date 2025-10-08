@@ -48,7 +48,7 @@ function MainContent() {
       <EventInfoPage />
       <TimeTablePage />
       <GuestPage imageData={imageData} textData={textData} />
-      <TournamentPage />
+      <TournamentPage imageData={imageData} textData={textData} />
       <ShopPage imageData={imageData} textData={textData} />
       <ExhibitionPage imageData={imageData} textData={textData} />
       <CorporationPage imageData={imageData} textData={textData} />

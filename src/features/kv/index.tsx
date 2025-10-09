@@ -1,19 +1,19 @@
-import { ImageItem } from '@/types/type';
-import { useEffect, useState } from 'react';
+import { ImageItem } from "@/types/type";
+import { useEffect, useState } from "react";
 
 type Props = {
   imageData: ImageItem[];
 };
 
 export default function KeyVisualPage({ imageData }: Props) {
-  const [kvImage, setKvImage] = useState<string>('');
+  const [kvImage, setKvImage] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [imageError, setImageError] = useState<boolean>(false);
 
   useEffect(() => {
     const loadImage = async () => {
       const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
-      const themeImg = imageData.find((item) => item.name === 'theme_image');
+      const themeImg = imageData.find((item) => item.name === "theme_image");
       const url = `${API_BASE_URL}${themeImg?.filename}`;
       await fetchImageAsBlob(url);
     };
@@ -28,14 +28,14 @@ export default function KeyVisualPage({ imageData }: Props) {
           throw new Error(`HTTP error! status: ${res.status}`);
         }
         // レスポンスがJSONかどうかをチェック
-        const contentType = res.headers.get('content-type');
-        if (contentType && contentType.includes('application/json')) {
-          throw new Error('画像ではなくJSONが返されました');
+        const contentType = res.headers.get("content-type");
+        if (contentType && contentType.includes("application/json")) {
+          throw new Error("画像ではなくJSONが返されました");
         }
         // 画像をblobとして取得
         const blob = await res.blob();
         // 既存のObjectURLがあればrevoke
-        if (kvImage && kvImage.startsWith('blob:')) {
+        if (kvImage && kvImage.startsWith("blob:")) {
           URL.revokeObjectURL(kvImage);
         }
         // 新しいObjectURLを作成
@@ -43,7 +43,7 @@ export default function KeyVisualPage({ imageData }: Props) {
         setKvImage(objectURL);
         setImageError(false);
       } catch (err) {
-        console.error('画像の取得に失敗しました:', err);
+        console.error("画像の取得に失敗しました:", err);
         setImageError(true);
       } finally {
         setIsLoading(false);
@@ -53,7 +53,7 @@ export default function KeyVisualPage({ imageData }: Props) {
 
     // cleanup関数でObjectURLをrevoke
     return () => {
-      if (kvImage && kvImage.startsWith('blob:')) {
+      if (kvImage && kvImage.startsWith("blob:")) {
         URL.revokeObjectURL(kvImage);
       }
     };
@@ -67,7 +67,7 @@ export default function KeyVisualPage({ imageData }: Props) {
         width={0}
         height={0}
         sizes="100%"
-        style={{ width: '100%', height: 'auto' }}
+        style={{ width: "100%", height: "auto" }}
       />
       <div className="p-5">
         <div className="bg-umenobe-enpha-orange sm:py-1 px-2 sm:px-3 inline-block">

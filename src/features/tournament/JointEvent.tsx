@@ -1,5 +1,5 @@
-import { ImageItem, TextItem } from '@/types/type';
-import { useEffect, useState } from 'react';
+import { ImageItem, TextItem } from "@/types/type";
+import { useEffect, useState } from "react";
 
 type Props = {
   imageData: ImageItem[];
@@ -30,17 +30,17 @@ export const JointEvent = ({ imageData, textData }: Props) => {
           throw new Error(`HTTP error! status: ${res.status}`);
         }
 
-        const contentType = res.headers.get('content-type');
-        if (contentType && contentType.includes('application/json')) {
-          throw new Error('画像ではなくJSONが返されました');
+        const contentType = res.headers.get("content-type");
+        if (contentType && contentType.includes("application/json")) {
+          throw new Error("画像ではなくJSONが返されました");
         }
 
         const blob = await res.blob();
 
         if (
-          jointEventImage
-          && typeof jointEventImage === 'string'
-          && jointEventImage.startsWith('blob:')
+          jointEventImage &&
+          typeof jointEventImage === "string" &&
+          jointEventImage.startsWith("blob:")
         ) {
           URL.revokeObjectURL(jointEventImage);
         }
@@ -49,7 +49,7 @@ export const JointEvent = ({ imageData, textData }: Props) => {
         setJointEventImage(objectURL);
         setImageError(false);
       } catch (err) {
-        console.error('画像の取得に失敗しました:', err);
+        console.error("画像の取得に失敗しました:", err);
         setImageError(true);
       } finally {
         setIsLoading(false);
@@ -62,27 +62,39 @@ export const JointEvent = ({ imageData, textData }: Props) => {
       const url = `${API_BASE_URL}${jointEventImg.filename}`;
       fetchImageAsBlob(url);
     }
-    const name = textData.find((item) => item.name.startsWith('joint_event_name'));
+    const name = textData.find((item) =>
+      item.name.startsWith("joint_event_name"),
+    );
     if (name && name.text) {
       setJointEventName(name.text);
     }
-    const desc = textData.find((item) => item.name.startsWith('joint_event_desc'));
+    const desc = textData.find((item) =>
+      item.name.startsWith("joint_event_desc"),
+    );
     if (desc && desc.text) {
       setJointEventDesc(desc.text);
     }
-    const copy = textData.find((item) => item.name.startsWith('joint_event_catch'));
+    const copy = textData.find((item) =>
+      item.name.startsWith("joint_event_catch"),
+    );
     if (copy && copy.text) {
       setJointEventCatch(copy.text);
     }
-    const time = textData.find((item) => item.name.startsWith('joint_event_time'));
+    const time = textData.find((item) =>
+      item.name.startsWith("joint_event_time"),
+    );
     if (time && time.text) {
       setJointEventTime(time.text);
     }
-    const location = textData.find((item) => item.name.startsWith('joint_event_location'));
+    const location = textData.find((item) =>
+      item.name.startsWith("joint_event_location"),
+    );
     if (location && location.text) {
       setJointEventLocation(location.text);
     }
-    const web = textData.find((item) => item.name.startsWith('joint_event_website'));
+    const web = textData.find((item) =>
+      item.name.startsWith("joint_event_website"),
+    );
     if (web && web.text) {
       setJointEventWeb(web.text);
     }
@@ -105,7 +117,7 @@ export const JointEvent = ({ imageData, textData }: Props) => {
         ) : (
           <div className="w-full h-32 bg-gray-200 rounded-md flex items-center justify-center">
             <span className="text-gray-500 text-sm">
-              {imageError ? '画像の取得に失敗' : '画像がありません'}
+              {imageError ? "画像の取得に失敗" : "画像がありません"}
             </span>
           </div>
         )}

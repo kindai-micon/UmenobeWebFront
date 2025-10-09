@@ -1,6 +1,6 @@
-import { Heading } from '@/components/Heading';
-import { ImageItem, TextItem } from '@/types/type';
-import { ExhibitionList } from './ExhibitionList';
+import { Heading } from "@/components/Heading";
+import { ImageItem, TextItem } from "@/types/type";
+import { ExhibitionList } from "./ExhibitionList";
 
 type Props = {
   imageData: ImageItem[];

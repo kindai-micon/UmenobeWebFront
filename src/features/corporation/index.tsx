@@ -1,6 +1,6 @@
-import { Heading } from '@/components/Heading';
-import { ImageItem, TextItem } from '@/types/type';
-import { CorpList } from './CorpList';
+import { Heading } from "@/components/Heading";
+import { ImageItem, TextItem } from "@/types/type";
+import { CorpList } from "./CorpList";
 
 type Props = {
   imageData: ImageItem[];

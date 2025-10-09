@@ -133,7 +133,7 @@ export const Corp = ({ imageData, textData }: Props) => {
         )}
         {corpTel && (
           <p className="my-4 tracking-widest">
-            <span className="py-1 rounded-sm">住所：</span>
+            <span className="py-1 rounded-sm">電話：</span>
             {corpTel}
           </p>
         )}

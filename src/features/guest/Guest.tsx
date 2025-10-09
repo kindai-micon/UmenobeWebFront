@@ -63,7 +63,7 @@ export const Guest = ({ imageData, textData }: Props) => {
         URL.revokeObjectURL(guestImage);
       }
     };
-  }, [imageData]);
+  }, [imageData, textData]);
 
   return (
     <div className="w-4/5 sm:w-2/3 p-8 bg-umenobe-light-orange flex flex-col items-center gap-4 sm:gap-8 mb-8 rounded-md">

@@ -32,7 +32,6 @@ export default function TimeTablePage({ textData }: Props) {
       title: groups[n].title,
       location: groups[n].location,
     }));
-    console.log('timetable grouped (no id):', result);
     setTimeTable(result);
   }, [textData]);
 

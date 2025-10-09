@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 
 type Props = {
   imageData: string;
@@ -8,10 +8,10 @@ type Props = {
 };
 
 export const Shop = ({ imageData, textData }: Props) => {
-  const [guestImage, setGuestImage] = useState<string>('');
+  const [guestImage, setGuestImage] = useState<string>("");
   useEffect(() => {
     if (imageData) {
-      const url = (process.env.NEXT_PUBLIC_API_BASE_URL || '') + imageData;
+      const url = (process.env.NEXT_PUBLIC_API_BASE_URL || "") + imageData;
       setGuestImage(url);
     }
   }, [imageData]);

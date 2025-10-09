@@ -1,7 +1,7 @@
-import { Heading } from '@/components/Heading';
-import { TextItem } from '@/types/type';
-import { useEffect, useState } from 'react';
-import { TimeTable } from './TimeTable';
+import { Heading } from "@/components/Heading";
+import { TextItem } from "@/types/type";
+import { useEffect, useState } from "react";
+import { TimeTable } from "./TimeTable";
 
 type Props = {
   textData: TextItem[];
@@ -13,7 +13,7 @@ export default function TimeTablePage({ textData }: Props) {
   >([]);
 
   useEffect(() => {
-    const data = textData.filter((item) => item.name.startsWith('schedule'));
+    const data = textData.filter((item) => item.name.startsWith("schedule"));
 
     // グループを作成: schedule_<type>_<num> 形式を解析して、num ごとに type をキーに格納する
     const groups: Record<string, Record<string, string>> = {};
@@ -32,7 +32,6 @@ export default function TimeTablePage({ textData }: Props) {
       title: groups[n].title,
       location: groups[n].location,
     }));
-    console.log('timetable grouped (no id):', result);
     setTimeTable(result);
   }, [textData]);
 

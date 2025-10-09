@@ -1,5 +1,5 @@
-import { ImageItem, TextItem } from '@/types/type';
-import { useEffect, useState } from 'react';
+import { ImageItem, TextItem } from "@/types/type";
+import { useEffect, useState } from "react";
 
 type Props = {
   imageData: ImageItem[];
@@ -7,11 +7,11 @@ type Props = {
 };
 
 export const Firework = ({ imageData, textData }: Props) => {
-  const [fireworkImage, setFireworkImage] = useState<string>('');
-  const [fireworkDesc, setFireworkDesc] = useState<string>('');
-  const [fireworkLocation, setFireworkLocation] = useState<string>('');
-  const [fireworkTime, setFireworkTime] = useState<string>('');
-  const [fireworkNotice, setFireworkNotice] = useState<string>('');
+  const [fireworkImage, setFireworkImage] = useState<string>("");
+  const [fireworkDesc, setFireworkDesc] = useState<string>("");
+  const [fireworkLocation, setFireworkLocation] = useState<string>("");
+  const [fireworkTime, setFireworkTime] = useState<string>("");
+  const [fireworkNotice, setFireworkNotice] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [imageError, setImageError] = useState<boolean>(false);
 
@@ -19,20 +19,20 @@ export const Firework = ({ imageData, textData }: Props) => {
     const loadImage = async () => {
       const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
       const fireworkImg = imageData.find(
-        (item) => item.name === 'firework_image',
+        (item) => item.name === "firework_image",
       );
       const url = `${API_BASE_URL}${fireworkImg?.filename}`;
       setFireworkDesc(
-        textData.find((item) => item.name === 'firework_desc')?.text,
+        textData.find((item) => item.name === "firework_desc")?.text,
       );
       setFireworkLocation(
-        textData.find((item) => item.name === 'firework_location')?.text,
+        textData.find((item) => item.name === "firework_location")?.text,
       );
       setFireworkTime(
-        textData.find((item) => item.name === 'firework_time')?.text,
+        textData.find((item) => item.name === "firework_time")?.text,
       );
       setFireworkNotice(
-        textData.find((item) => item.name === 'firework_notice')?.text,
+        textData.find((item) => item.name === "firework_notice")?.text,
       );
       await fetchImageAsBlob(url);
     };
@@ -46,14 +46,14 @@ export const Firework = ({ imageData, textData }: Props) => {
           throw new Error(`HTTP error! status: ${res.status}`);
         }
         // レスポンスがJSONかどうかをチェック
-        const contentType = res.headers.get('content-type');
-        if (contentType && contentType.includes('application/json')) {
-          throw new Error('画像ではなくJSONが返されました');
+        const contentType = res.headers.get("content-type");
+        if (contentType && contentType.includes("application/json")) {
+          throw new Error("画像ではなくJSONが返されました");
         }
         // 画像をblobとして取得
         const blob = await res.blob();
         // 既存のObjectURLがあればrevoke
-        if (fireworkImage && fireworkImage.startsWith('blob:')) {
+        if (fireworkImage && fireworkImage.startsWith("blob:")) {
           URL.revokeObjectURL(fireworkImage);
         }
         // 新しいObjectURLを作成
@@ -61,7 +61,7 @@ export const Firework = ({ imageData, textData }: Props) => {
         setFireworkImage(objectURL);
         setImageError(false);
       } catch (err) {
-        console.error('画像の取得に失敗しました:', err);
+        console.error("画像の取得に失敗しました:", err);
         setImageError(true);
       } finally {
         setIsLoading(false);
@@ -71,7 +71,7 @@ export const Firework = ({ imageData, textData }: Props) => {
 
     // cleanup関数でObjectURLをrevoke
     return () => {
-      if (fireworkImage && fireworkImage.startsWith('blob:')) {
+      if (fireworkImage && fireworkImage.startsWith("blob:")) {
         URL.revokeObjectURL(fireworkImage);
       }
     };
@@ -95,7 +95,7 @@ export const Firework = ({ imageData, textData }: Props) => {
           ) : (
             <div className="w-full h-[400px] bg-gray-200 rounded-md flex items-center justify-center">
               <span className="text-gray-500 text-sm">
-                {imageError ? '画像の取得に失敗' : '画像がありません'}
+                {imageError ? "画像の取得に失敗" : "画像がありません"}
               </span>
             </div>
           )}

@@ -1,6 +1,6 @@
-import { Heading } from '@/components/Heading';
-import { ImageItem, TextItem } from '@/types/type';
-import { Firework } from './Firework';
+import { Heading } from "@/components/Heading";
+import { ImageItem, TextItem } from "@/types/type";
+import { Firework } from "./Firework";
 
 type Props = {
   imageData: ImageItem[];

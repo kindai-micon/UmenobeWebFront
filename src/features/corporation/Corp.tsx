@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import { ImageItem, TextItem } from '@/types/type';
+import { useEffect, useState } from "react";
+import { ImageItem, TextItem } from "@/types/type";
 
 type Props = {
   imageData: ImageItem[];
@@ -29,17 +29,17 @@ export const Corp = ({ imageData, textData }: Props) => {
           throw new Error(`HTTP error! status: ${res.status}`);
         }
 
-        const contentType = res.headers.get('content-type');
-        if (contentType && contentType.includes('application/json')) {
-          throw new Error('画像ではなくJSONが返されました');
+        const contentType = res.headers.get("content-type");
+        if (contentType && contentType.includes("application/json")) {
+          throw new Error("画像ではなくJSONが返されました");
         }
 
         const blob = await res.blob();
 
         if (
-          corpImage
-          && typeof corpImage === 'string'
-          && corpImage.startsWith('blob:')
+          corpImage &&
+          typeof corpImage === "string" &&
+          corpImage.startsWith("blob:")
         ) {
           URL.revokeObjectURL(corpImage);
         }
@@ -48,7 +48,7 @@ export const Corp = ({ imageData, textData }: Props) => {
         setCorpImage(objectURL);
         setImageError(false);
       } catch (err) {
-        console.error('画像の取得に失敗しました:', err);
+        console.error("画像の取得に失敗しました:", err);
         setImageError(true);
       } finally {
         setIsLoading(false);
@@ -61,31 +61,37 @@ export const Corp = ({ imageData, textData }: Props) => {
       const url = `${API_BASE_URL}${corpImg.filename}`;
       fetchImageAsBlob(url);
     }
-    const name = textData.find((item) => item.name.startsWith('company_name'));
+    const name = textData.find((item) => item.name.startsWith("company_name"));
     if (name && name.text) {
       setCorpName(name.text);
     }
-    const desc = textData.find((item) => item.name.startsWith('company_desc'));
+    const desc = textData.find((item) => item.name.startsWith("company_desc"));
     if (desc && desc.text) {
       setCorpDesc(desc.text);
     }
-    const time = textData.find((item) => item.name.startsWith('company_time'));
+    const time = textData.find((item) => item.name.startsWith("company_time"));
     if (time && time.text) {
       setCorpTime(time.text);
     }
-    const location = textData.find((item) => item.name.startsWith('company_location'));
+    const location = textData.find((item) =>
+      item.name.startsWith("company_location"),
+    );
     if (location && location.text) {
       setCorpLocation(location.text);
     }
-    const web = textData.find((item) => item.name.startsWith('company_website'));
+    const web = textData.find((item) =>
+      item.name.startsWith("company_website"),
+    );
     if (web && web.text) {
       setCorpWeb(web.text);
     }
-    const address = textData.find((item) => item.name.startsWith('company_address'));
+    const address = textData.find((item) =>
+      item.name.startsWith("company_address"),
+    );
     if (address && address.text) {
       setCorpAddress(address.text);
     }
-    const tel = textData.find((item) => item.name.startsWith('company_tel'));
+    const tel = textData.find((item) => item.name.startsWith("company_tel"));
     if (tel && tel.text) {
       setCorpTel(tel.text);
     }
@@ -133,7 +139,7 @@ export const Corp = ({ imageData, textData }: Props) => {
         )}
         {corpTel && (
           <p className="my-4 tracking-widest">
-            <span className="py-1 rounded-sm">住所：</span>
+            <span className="py-1 rounded-sm">電話：</span>
             {corpTel}
           </p>
         )}

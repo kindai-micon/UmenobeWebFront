@@ -1,6 +1,6 @@
-import { ExhibitItem, ImageItem, TextItem } from '@/types/type';
-import { useEffect, useState } from 'react';
-import { Exhibition } from './Exhibition';
+import { ExhibitItem, ImageItem, TextItem } from "@/types/type";
+import { useEffect, useState } from "react";
+import { Exhibition } from "./Exhibition";
 
 type Props = {
   imageData: ImageItem[];
@@ -12,19 +12,24 @@ export function ExhibitionList({ imageData, textData }: Props) {
   const [exhibitionList, setExhibitionList] = useState<ExhibitItem[]>([]);
 
   const mergeByFilename = (images: ImageItem[], texts: TextItem[]) => {
-    const exhibitionImages = images.filter((item) => item.name.startsWith('exhibition'));
-    const exhibitionTexts = texts.filter((item) => item.name.startsWith('exhibition'));
+    const exhibitionImages = images.filter((item) =>
+      item.name.startsWith("exhibition"),
+    );
+    const exhibitionTexts = texts.filter((item) =>
+      item.name.startsWith("exhibition"),
+    );
     // filenameごとにグループ化
-    const grouped: Record<string, { images: ImageItem[]; texts: TextItem[] }> = {};
+    const grouped: Record<string, { images: ImageItem[]; texts: TextItem[] }> =
+      {};
 
     // helper to create group key like `exhibition_1` from names like `exhibition_name_1` or `exhibition_desc_1`
     const groupKeyForName = (name: string | undefined | null, idx: number) => {
-      if (typeof name === 'string') {
+      if (typeof name === "string") {
         const trimmed = name.trim();
         if (
-          trimmed.length > 0
-          && trimmed !== 'undefined'
-          && trimmed !== 'null'
+          trimmed.length > 0 &&
+          trimmed !== "undefined" &&
+          trimmed !== "null"
         ) {
           // match first segment (exhibition) and trailing digits
           // examples:

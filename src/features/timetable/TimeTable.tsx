@@ -9,7 +9,7 @@ type DataItem = {
   location?: string; // '野外ステージ' | '多目的ホール' (or other)
 };
 
-type Place = '野外ステージ' | '多目的ホール';
+type Place = "野外ステージ" | "多目的ホール";
 
 type Event = {
   place: Place;
@@ -26,7 +26,7 @@ const DEFAULT_DURATION = 30; // 終了時刻が無い場合の仮の長さ（分
 
 // "HH:MM" -> 分
 function toMinutes(hhmm: string): number {
-  const [h, m] = hhmm.split(':').map((v) => parseInt(v, 10));
+  const [h, m] = hhmm.split(":").map((v) => parseInt(v, 10));
   return h * 60 + m;
 }
 
@@ -36,7 +36,8 @@ function toMinutes(hhmm: string): number {
 function parseName(
   name: string,
 ): { start: number; end: number; place?: Place } | null {
-  const re = /^(\d{1,2}:\d{2})(?:\s*[-–]\s*(\d{1,2}:\d{2}))?(?:\s*(?:@|\s+)\s*(野外ステージ|多目的ホール))?$/;
+  const re =
+    /^(\d{1,2}:\d{2})(?:\s*[-–]\s*(\d{1,2}:\d{2}))?(?:\s*(?:@|\s+)\s*(野外ステージ|多目的ホール))?$/;
   const m = name.trim().match(re);
   if (!m) return null;
 
@@ -61,22 +62,23 @@ function normalize(items: DataItem[]): Event[] {
   return items
     .map((it) => {
       // name may be like '10:00@多目的ホール' or time field may be provided separately
-      const rawName = it.name ?? it.time ?? it.text ?? '';
+      const rawName = it.name ?? it.time ?? it.text ?? "";
       // Try parse from rawName first. If parsed lacks place, and explicit location exists, try to incorporate it.
       let parsed = parseName(String(rawName));
       if ((!parsed || !parsed.place) && it.time) {
         // try combining time and explicit location, e.g. '10:00@多目的ホール'
-        const combined = `${it.time}${it.location ? ` @${it.location}` : ''}`;
+        const combined = `${it.time}${it.location ? ` @${it.location}` : ""}`;
         parsed = parseName(combined) || parsed;
       }
       // If parse found times but no place, prefer explicit it.location if it matches expected places
       if (
-        parsed
-        && (!parsed.place || parsed.place === undefined)
-        && it.location
+        parsed &&
+        (!parsed.place || parsed.place === undefined) &&
+        it.location
       ) {
         const loc = it.location as Place;
-        if (loc === '野外ステージ' || loc === '多目的ホール') parsed.place = loc;
+        if (loc === "野外ステージ" || loc === "多目的ホール")
+          parsed.place = loc;
       }
       if (!parsed) return null;
       const start = floorToSlot(parsed.start);
@@ -103,14 +105,14 @@ function minutesRange(minStart: number, maxEnd: number): number[] {
 function fmt(mins: number): string {
   const h = Math.floor(mins / 60);
   const m = mins % 60;
-  return `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}`;
+  return `${String(h).padStart(2, "0")}:${String(m).padStart(2, "0")}`;
 }
 
 type Props = { data: DataItem[]; places?: Place[] }; // 列として出したい場所配列（省略時は ["野外ステージ","多目的ホール"]）
 
 export const TimeTable = ({
   data,
-  places = ['野外ステージ', '多目的ホール'],
+  places = ["野外ステージ", "多目的ホール"],
 }: Props) => {
   const events = normalize(data);
 
@@ -125,7 +127,8 @@ export const TimeTable = ({
     多目的ホール: [],
   };
   for (const e of events) eventsByPlace[e.place].push(e);
-  for (const p of places) eventsByPlace[p]?.sort((a, b) => a.startMin - b.startMin);
+  for (const p of places)
+    eventsByPlace[p]?.sort((a, b) => a.startMin - b.startMin);
 
   // 各場所・各スロットが「イベントで覆われているか」を高速に判定するためのマップ
   const coverMap: Record<Place, Record<number, Event | null>> = {

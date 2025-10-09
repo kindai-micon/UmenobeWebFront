@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import { ImageItem, TextItem } from '@/types/type';
-import { useEffect, useState } from 'react';
+import { ImageItem, TextItem } from "@/types/type";
+import { useEffect, useState } from "react";
 
 type Props = {
   imageData: ImageItem[];
@@ -26,17 +26,17 @@ export const YShop = ({ imageData, textData }: Props) => {
           throw new Error(`HTTP error! status: ${res.status}`);
         }
 
-        const contentType = res.headers.get('content-type');
-        if (contentType && contentType.includes('application/json')) {
-          throw new Error('画像ではなくJSONが返されました');
+        const contentType = res.headers.get("content-type");
+        if (contentType && contentType.includes("application/json")) {
+          throw new Error("画像ではなくJSONが返されました");
         }
 
         const blob = await res.blob();
 
         if (
-          shopImage
-          && typeof shopImage === 'string'
-          && shopImage.startsWith('blob:')
+          shopImage &&
+          typeof shopImage === "string" &&
+          shopImage.startsWith("blob:")
         ) {
           URL.revokeObjectURL(shopImage);
         }
@@ -45,7 +45,7 @@ export const YShop = ({ imageData, textData }: Props) => {
         setShopImage(objectURL);
         setImageError(false);
       } catch (err) {
-        console.error('画像の取得に失敗しました:', err);
+        console.error("画像の取得に失敗しました:", err);
         setImageError(true);
       } finally {
         setIsLoading(false);
@@ -58,11 +58,11 @@ export const YShop = ({ imageData, textData }: Props) => {
       const url = `${API_BASE_URL}${shopImg.filename}`;
       fetchImageAsBlob(url);
     }
-    const name = textData.find((item) => item.name.startsWith('y_shop_name'));
+    const name = textData.find((item) => item.name.startsWith("y_shop_name"));
     if (name && name.text) {
       setShopName(name.text);
     }
-    const menu = textData.find((item) => item.name.startsWith('y_shop_menu'));
+    const menu = textData.find((item) => item.name.startsWith("y_shop_menu"));
     if (menu && menu.text) {
       setShopMenu(menu.text);
     }

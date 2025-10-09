@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars, faXmark } from '@fortawesome/free-solid-svg-icons';
-import { useRef, useState } from 'react';
-import Link from 'next/link';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars, faXmark } from "@fortawesome/free-solid-svg-icons";
+import { useRef, useState } from "react";
+import Link from "next/link";
 
 export function Header() {
   const [open, setOpen] = useState(false);

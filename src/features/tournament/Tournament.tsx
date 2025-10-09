@@ -1,5 +1,5 @@
-import { ImageItem, TextItem } from '@/types/type';
-import { useEffect, useState } from 'react';
+import { ImageItem, TextItem } from "@/types/type";
+import { useEffect, useState } from "react";
 
 type Props = {
   imageData: ImageItem[];
@@ -24,17 +24,17 @@ export const Tournament = ({ imageData, textData }: Props) => {
           throw new Error(`HTTP error! status: ${res.status}`);
         }
 
-        const contentType = res.headers.get('content-type');
-        if (contentType && contentType.includes('application/json')) {
-          throw new Error('画像ではなくJSONが返されました');
+        const contentType = res.headers.get("content-type");
+        if (contentType && contentType.includes("application/json")) {
+          throw new Error("画像ではなくJSONが返されました");
         }
 
         const blob = await res.blob();
 
         if (
-          eventImage
-          && typeof eventImage === 'string'
-          && eventImage.startsWith('blob:')
+          eventImage &&
+          typeof eventImage === "string" &&
+          eventImage.startsWith("blob:")
         ) {
           URL.revokeObjectURL(eventImage);
         }
@@ -43,7 +43,7 @@ export const Tournament = ({ imageData, textData }: Props) => {
         setEventImage(objectURL);
         setImageError(false);
       } catch (err) {
-        console.error('画像の取得に失敗しました:', err);
+        console.error("画像の取得に失敗しました:", err);
         setImageError(true);
       } finally {
         setIsLoading(false);
@@ -56,11 +56,11 @@ export const Tournament = ({ imageData, textData }: Props) => {
       const url = `${API_BASE_URL}${eventImg.filename}`;
       fetchImageAsBlob(url);
     }
-    const name = textData.find((item) => item.name.startsWith('event_name'));
+    const name = textData.find((item) => item.name.startsWith("event_name"));
     if (name && name.text) {
       setEventName(name.text);
     }
-    const desc = textData.find((item) => item.name.startsWith('event_desc'));
+    const desc = textData.find((item) => item.name.startsWith("event_desc"));
     if (desc && desc.text) {
       setEventDesc(desc.text);
     }
@@ -85,7 +85,7 @@ export const Tournament = ({ imageData, textData }: Props) => {
         ) : (
           <div className="w-[300px] h-[200px] bg-gray-200 border-5 border-umenobe-orange rounded-md flex items-center justify-center">
             <span className="text-gray-500 text-sm">
-              {imageError ? '画像の取得に失敗' : '画像がありません'}
+              {imageError ? "画像の取得に失敗" : "画像がありません"}
             </span>
           </div>
         )}

@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import { ImageItem, TextItem } from '@/types/type';
+import { useEffect, useState } from "react";
+import { ImageItem, TextItem } from "@/types/type";
 
 type Props = {
   imageData: ImageItem[];
@@ -27,17 +27,17 @@ export const Exhibition = ({ imageData, textData }: Props) => {
           throw new Error(`HTTP error! status: ${res.status}`);
         }
 
-        const contentType = res.headers.get('content-type');
-        if (contentType && contentType.includes('application/json')) {
-          throw new Error('画像ではなくJSONが返されました');
+        const contentType = res.headers.get("content-type");
+        if (contentType && contentType.includes("application/json")) {
+          throw new Error("画像ではなくJSONが返されました");
         }
 
         const blob = await res.blob();
 
         if (
-          exhibitImage
-          && typeof exhibitImage === 'string'
-          && exhibitImage.startsWith('blob:')
+          exhibitImage &&
+          typeof exhibitImage === "string" &&
+          exhibitImage.startsWith("blob:")
         ) {
           URL.revokeObjectURL(exhibitImage);
         }
@@ -46,7 +46,7 @@ export const Exhibition = ({ imageData, textData }: Props) => {
         setExhibitImage(objectURL);
         setImageError(false);
       } catch (err) {
-        console.error('画像の取得に失敗しました:', err);
+        console.error("画像の取得に失敗しました:", err);
         setImageError(true);
       } finally {
         setIsLoading(false);
@@ -59,23 +59,33 @@ export const Exhibition = ({ imageData, textData }: Props) => {
       const url = `${API_BASE_URL}${exhibitImg.filename}`;
       fetchImageAsBlob(url);
     }
-    const name = textData.find((item) => item.name.startsWith('exhibition_name'));
+    const name = textData.find((item) =>
+      item.name.startsWith("exhibition_name"),
+    );
     if (name && name.text) {
       setExhibitName(name.text);
     }
-    const desc = textData.find((item) => item.name.startsWith('exhibition_desc'));
+    const desc = textData.find((item) =>
+      item.name.startsWith("exhibition_desc"),
+    );
     if (desc && desc.text) {
       setExhibitDesc(desc.text);
     }
-    const time = textData.find((item) => item.name.startsWith('exhibition_time'));
+    const time = textData.find((item) =>
+      item.name.startsWith("exhibition_time"),
+    );
     if (time && time.text) {
       setExhibitTime(time.text);
     }
-    const location = textData.find((item) => item.name.startsWith('exhibition_location'));
+    const location = textData.find((item) =>
+      item.name.startsWith("exhibition_location"),
+    );
     if (location && location.text) {
       setExhibitLocation(location.text);
     }
-    const web = textData.find((item) => item.name.startsWith('exhibition_website'));
+    const web = textData.find((item) =>
+      item.name.startsWith("exhibition_website"),
+    );
     if (web && web.text) {
       setExhibitWeb(web.text);
     }

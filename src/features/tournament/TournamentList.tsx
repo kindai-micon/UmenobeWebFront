@@ -1,9 +1,7 @@
-import {
-  EventItem, ImageItem, JointEventItem, TextItem,
-} from '@/types/type';
-import { useEffect, useState } from 'react';
-import { JointEvent } from './JointEvent';
-import { Tournament } from './Tournament';
+import { EventItem, ImageItem, JointEventItem, TextItem } from "@/types/type";
+import { useEffect, useState } from "react";
+import { JointEvent } from "./JointEvent";
+import { Tournament } from "./Tournament";
 
 type Props = {
   imageData: ImageItem[];
@@ -22,16 +20,17 @@ export function TournamentList({ imageData, textData }: Props) {
     const companyImages = images.filter((item) => item.name.startsWith(sw));
     const companyTexts = texts.filter((item) => item.name.startsWith(sw));
     // filenameごとにグループ化
-    const grouped: Record<string, { images: ImageItem[]; texts: TextItem[] }> = {};
+    const grouped: Record<string, { images: ImageItem[]; texts: TextItem[] }> =
+      {};
 
     // helper to create group key like `exhibition_1` from names like `exhibition_name_1` or `exhibition_desc_1`
     const groupKeyForName = (name: string | undefined | null, idx: number) => {
-      if (typeof name === 'string') {
+      if (typeof name === "string") {
         const trimmed = name.trim();
         if (
-          trimmed.length > 0
-          && trimmed !== 'undefined'
-          && trimmed !== 'null'
+          trimmed.length > 0 &&
+          trimmed !== "undefined" &&
+          trimmed !== "null"
         ) {
           // match first segment (exhibition) and trailing digits
           // examples:
@@ -67,8 +66,8 @@ export function TournamentList({ imageData, textData }: Props) {
   };
 
   useEffect(() => {
-    const event = mergeByFilename(imageData, textData, 'event');
-    const jointEvent = mergeByFilename(imageData, textData, 'joint_event');
+    const event = mergeByFilename(imageData, textData, "event");
+    const jointEvent = mergeByFilename(imageData, textData, "joint_event");
     setEventList(event);
     setJointEventList(jointEvent);
   }, [textData, imageData]);

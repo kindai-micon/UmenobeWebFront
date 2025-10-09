@@ -1,20 +1,21 @@
-'use client';
+"use client";
 
-import { Suspense, useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from "react";
 
-import { Header } from '@/features/header/Header';
-import KeyVisualPage from '@/features/kv';
-import EventInfoPage from '@/features/eventinfo';
-import TimeTablePage from '@/features/timetable';
-import TournamentPage from '@/features/tournament';
-import ShopPage from '@/features/shop';
-import ExhibitionPage from '@/features/exhibition';
-import CorporationPage from '@/features/corporation';
-import AccessPage from '@/features/access';
-import GuestPage from '@/features/guest';
-import FireworkPage from '@/features/firework';
-import { ImageItem, TextItem } from '@/types/type';
-import { Footer } from '@/components/Footer';
+import { Header } from "@/features/header/Header";
+import { TopButton } from "@/components/TopButton";
+import KeyVisualPage from "@/features/kv";
+import EventInfoPage from "@/features/eventinfo";
+import TimeTablePage from "@/features/timetable";
+import TournamentPage from "@/features/tournament";
+import ShopPage from "@/features/shop";
+import ExhibitionPage from "@/features/exhibition";
+import CorporationPage from "@/features/corporation";
+import AccessPage from "@/features/access";
+import GuestPage from "@/features/guest";
+import FireworkPage from "@/features/firework";
+import { ImageItem, TextItem } from "@/types/type";
+import { Footer } from "@/components/Footer";
 
 function MainContent() {
   const [imageData, setImageData] = useState<ImageItem[]>([]);
@@ -35,7 +36,7 @@ function MainContent() {
         setImageData(imageData);
         setTextData(textData);
       } catch (error) {
-        console.error('データの取得に失敗しました:', error);
+        console.error("データの取得に失敗しました:", error);
       }
     };
 
@@ -44,6 +45,7 @@ function MainContent() {
 
   return (
     <div>
+      <TopButton />
       <KeyVisualPage imageData={imageData} />
       <EventInfoPage />
       <TimeTablePage textData={textData} />

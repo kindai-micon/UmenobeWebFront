@@ -3,6 +3,7 @@
 import { Suspense, useEffect, useState } from 'react';
 
 import { Header } from '@/features/header/Header';
+import { TopButton } from '@/components/TopButton';
 import KeyVisualPage from '@/features/kv';
 import EventInfoPage from '@/features/eventinfo';
 import TimeTablePage from '@/features/timetable';
@@ -44,6 +45,7 @@ function MainContent() {
 
   return (
     <div>
+      <TopButton />
       <KeyVisualPage imageData={imageData} />
       <EventInfoPage />
       <TimeTablePage textData={textData} />

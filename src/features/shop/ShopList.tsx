@@ -74,16 +74,16 @@ export function ShopList({ imageData, textData }: Props) {
 
   return (
     <>
-      <ul className="mb-8 flex flex-col md:flex-row justify-center gap-8">
+      <ul className="mb-8 flex flex-col md:flex-row md:flex-wrap md:justify-start justify-center gap-8">
         {xShopList.map((group) => (
-          <li key={group.name}>
+          <li key={group.name} className="w-full md:w-1/3 lg:w-1/4">
             <XShop imageData={group.images} textData={group.texts} />
           </li>
         ))}
       </ul>
-      <ul className="mb-8 flex flex-col md:flex-row justify-center gap-8">
+      <ul className="mb-8 flex flex-col md:flex-row md:flex-wrap md:justify-start justify-center gap-8">
         {yShopList.map((group) => (
-          <li key={group.name}>
+          <li key={group.name} className="w-full md:w-1/3 lg:w-1/4">
             <YShop imageData={group.images} textData={group.texts} />
           </li>
         ))}

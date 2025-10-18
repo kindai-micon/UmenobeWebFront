@@ -145,13 +145,20 @@ export const JointEvent = ({ imageData, textData }: Props) => {
           </p>
         )}
         {jointEventCatch && (
-          <p className="my-4 tracking-widest font-bold break-words">{jointEventCatch}</p>
+          <p className="my-4 tracking-widest font-bold break-words">
+            {jointEventCatch}
+          </p>
         )}
         <p className="break-words">{jointEventDesc}</p>
         {jointEventWeb && (
           <p className="my-4 tracking-widest break-words">
             <span className="py-1 rounded-sm">HP：</span>
-            <a href={jointEventWeb} className="break-all max-w-full inline-block underline underline-offset-4">サイトはこちら</a>
+            <a
+              href={jointEventWeb}
+              className="break-all max-w-full inline-block underline underline-offset-4"
+            >
+              サイトはこちら
+            </a>
           </p>
         )}
       </div>

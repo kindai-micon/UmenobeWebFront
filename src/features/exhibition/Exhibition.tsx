@@ -124,11 +124,16 @@ export const Exhibition = ({ imageData, textData }: Props) => {
             {exhibitTime}
           </p>
         )}
-  <p className="break-words">{exhibitDesc}</p>
+        <p className="break-words">{exhibitDesc}</p>
         {exhibitWeb && (
           <p className="my-4 tracking-widest break-words">
             <span className="py-1 rounded-sm">HP：</span>
-            <a href={exhibitWeb} className="break-all max-w-full inline-block underline underline-offset-4">サイトはこちら</a>
+            <a
+              href={exhibitWeb}
+              className="break-all max-w-full inline-block underline underline-offset-4"
+            >
+              サイトはこちら
+            </a>
           </p>
         )}
       </div>

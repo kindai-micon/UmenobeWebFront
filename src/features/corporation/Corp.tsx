@@ -130,7 +130,7 @@ export const Corp = ({ imageData, textData }: Props) => {
             {corpTime}
           </p>
         )}
-  <p className="break-words">{corpDesc}</p>
+        <p className="break-words">{corpDesc}</p>
         {corpAddress && (
           <p className="my-4 tracking-widest break-words">
             <span className="py-1 rounded-sm">住所：</span>
@@ -146,7 +146,12 @@ export const Corp = ({ imageData, textData }: Props) => {
         {corpWeb && (
           <p className="my-4 tracking-widest break-words">
             <span className="py-1 rounded-sm">HP：</span>
-            <a href={corpWeb} className="break-all max-w-full inline-block underline underline-offset-4">サイトはこちら</a>
+            <a
+              href={corpWeb}
+              className="break-all max-w-full inline-block underline underline-offset-4"
+            >
+              サイトはこちら
+            </a>
           </p>
         )}
       </div>

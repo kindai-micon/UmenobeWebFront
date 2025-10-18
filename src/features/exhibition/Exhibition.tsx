@@ -109,7 +109,7 @@ export const Exhibition = ({ imageData, textData }: Props) => {
           </h1>
         </div>
         {exhibitLocation && (
-          <p className="my-4 tracking-widest">
+          <p className="my-4 tracking-widest break-words">
             <span className="bg-umenobe-lightblue px-3 py-1 rounded-sm mr-2">
               場所
             </span>
@@ -117,18 +117,18 @@ export const Exhibition = ({ imageData, textData }: Props) => {
           </p>
         )}
         {exhibitTime && (
-          <p className="my-4 tracking-widest">
+          <p className="my-4 tracking-widest break-words">
             <span className="bg-umenobe-lightblue px-3 py-1 rounded-sm mr-2">
               時間
             </span>
             {exhibitTime}
           </p>
         )}
-        <p>{exhibitDesc}</p>
+  <p className="break-words">{exhibitDesc}</p>
         {exhibitWeb && (
-          <p className="my-4 tracking-widest">
+          <p className="my-4 tracking-widest break-words">
             <span className="py-1 rounded-sm">HP：</span>
-            <a href={exhibitWeb}>{exhibitWeb}</a>
+            <a href={exhibitWeb} className="break-all max-w-full inline-block underline underline-offset-4">{exhibitWeb}</a>
           </p>
         )}
       </div>

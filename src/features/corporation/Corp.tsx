@@ -146,7 +146,7 @@ export const Corp = ({ imageData, textData }: Props) => {
         {corpWeb && (
           <p className="my-4 tracking-widest break-words">
             <span className="py-1 rounded-sm">HP：</span>
-            <a href={corpWeb} className="break-all max-w-full inline-block underline underline-offset-4">{corpWeb}</a>
+            <a href={corpWeb} className="break-all max-w-full inline-block underline underline-offset-4">サイトはこちら</a>
           </p>
         )}
       </div>

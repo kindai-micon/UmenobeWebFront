@@ -129,7 +129,7 @@ export const JointEvent = ({ imageData, textData }: Props) => {
           </h1>
         </div>
         {jointEventLocation && (
-          <p className="my-4 tracking-widest">
+          <p className="my-4 tracking-widest break-words">
             <span className="bg-umenobe-lightblue px-3 py-1 rounded-sm mr-2">
               場所
             </span>
@@ -137,7 +137,7 @@ export const JointEvent = ({ imageData, textData }: Props) => {
           </p>
         )}
         {jointEventTime && (
-          <p className="my-4 tracking-widest">
+          <p className="my-4 tracking-widest break-words">
             <span className="bg-umenobe-lightblue px-3 py-1 rounded-sm mr-2">
               時間
             </span>
@@ -145,13 +145,20 @@ export const JointEvent = ({ imageData, textData }: Props) => {
           </p>
         )}
         {jointEventCatch && (
-          <p className="my-4 tracking-widest font-bold">{jointEventCatch}</p>
+          <p className="my-4 tracking-widest font-bold break-words">
+            {jointEventCatch}
+          </p>
         )}
-        <p>{jointEventDesc}</p>
+        <p className="break-words">{jointEventDesc}</p>
         {jointEventWeb && (
-          <p className="my-4 tracking-widest">
+          <p className="my-4 tracking-widest break-words">
             <span className="py-1 rounded-sm">HP：</span>
-            <a href={jointEventWeb}>{jointEventWeb}</a>
+            <a
+              href={jointEventWeb}
+              className="break-all max-w-full inline-block underline underline-offset-4"
+            >
+              サイトはこちら
+            </a>
           </p>
         )}
       </div>

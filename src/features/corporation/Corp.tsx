@@ -115,7 +115,7 @@ export const Corp = ({ imageData, textData }: Props) => {
           </h1>
         </div>
         {corpLocation && (
-          <p className="my-4 tracking-widest">
+          <p className="my-4 tracking-widest break-words">
             <span className="bg-umenobe-lightblue px-3 py-1 rounded-sm mr-2">
               場所
             </span>
@@ -123,30 +123,35 @@ export const Corp = ({ imageData, textData }: Props) => {
           </p>
         )}
         {corpTime && (
-          <p className="my-4 tracking-widest">
+          <p className="my-4 tracking-widest break-words">
             <span className="bg-umenobe-lightblue px-3 py-1 rounded-sm mr-2">
               時間
             </span>
             {corpTime}
           </p>
         )}
-        <p>{corpDesc}</p>
+        <p className="break-words">{corpDesc}</p>
         {corpAddress && (
-          <p className="my-4 tracking-widest">
+          <p className="my-4 tracking-widest break-words">
             <span className="py-1 rounded-sm">住所：</span>
             {corpAddress}
           </p>
         )}
         {corpTel && (
-          <p className="my-4 tracking-widest">
+          <p className="my-4 tracking-widest break-words">
             <span className="py-1 rounded-sm">電話：</span>
             {corpTel}
           </p>
         )}
         {corpWeb && (
-          <p className="my-4 tracking-widest">
+          <p className="my-4 tracking-widest break-words">
             <span className="py-1 rounded-sm">HP：</span>
-            <a href={corpWeb}>{corpWeb}</a>
+            <a
+              href={corpWeb}
+              className="break-all max-w-full inline-block underline underline-offset-4"
+            >
+              サイトはこちら
+            </a>
           </p>
         )}
       </div>

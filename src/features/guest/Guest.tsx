@@ -18,7 +18,7 @@ export const Guest = ({ imageData, textData }: Props) => {
   useEffect(() => {
     const loadImage = async () => {
       const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
-      const guestImg = imageData.find((item) => item.name === "guest_image");
+      const guestImg = imageData.find((item) => item.name === "guest");
       const url = `${API_BASE_URL}${guestImg?.filename}`;
       setGuestName(textData.find((item) => item.name === "guest_name")?.text);
       setGuestInfo(textData.find((item) => item.name === "guest_desc")?.text);
